@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
+        /* ===== ESTILOS (mantidos exatamente como antes) ===== */
         * {
             margin: 0;
             padding: 0;
@@ -299,6 +300,7 @@
             border-top: 1px solid #e6b42255;
             z-index: 999;
             gap: 4px;
+            scroll-behavior: smooth;
         }
         .bottom-nav::-webkit-scrollbar {
             height: 3px;
@@ -320,6 +322,7 @@
             cursor: pointer;
             transition: 0.2s;
             position: relative;
+            flex-shrink: 0;
         }
         .nav-item i {
             font-size: 1.3rem;
@@ -629,7 +632,7 @@
         <i class="fas fa-shopping-bag"></i> 📋 MEU PEDIDO <span id="shortcutBadge" class="cart-badge" style="position: relative; top: 0; right: 0; margin-left: 8px; display: none;">0</span>
     </div>
 
-    <!-- ================= PRATOS EXECUTIVOS ================= -->
+    <!-- ================= PRATOS EXECUTIVOS (SEM ANÚNCIOS) ================= -->
     <div id="block-executivos" class="category-block active-block">
         <div class="sec-banner"><img src="https://i.ibb.co/6R2FmDsz/1780714416466.png" alt="Pratos Executivos"></div>
         <section class="menu-category">
@@ -666,22 +669,11 @@
                 <div class="item-row"><div class="item-info"><span class="item-name">🐟 Tilápia Empanada Completa</span><div class="item-desc">Tilápia (170g), arroz, feijão de caldo, vinagrete, mandioca, batata frita</div></div><span class="item-price">R$ 42,00</span></div>
                 <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
             </div>
-
-            <!-- Anúncios duplos em Pratos Executivos -->
-            <div class="ad-space" data-ad-phone="5534991058994">
-                <div><i class="fas fa-bullhorn ad-icon"></i><span class="ad-title"> Destaque sua marca</span></div>
-                <div class="ad-description">Anuncie para quem busca qualidade. Não perca essa oportunidade!</div>
-                <div class="ad-cta"><i class="fab fa-whatsapp"></i> Reserve já →</div>
-            </div>
-            <div class="ad-space" data-ad-phone="5534991058994">
-                <div><i class="fas fa-chart-line ad-icon"></i><span class="ad-title"> Seu negócio aqui!</span></div>
-                <div class="ad-description">Atinge clientes que buscam qualidade. Vagas limitadas.</div>
-                <div class="ad-cta"><i class="fab fa-whatsapp"></i> Quero anunciar →</div>
-            </div>
+            <!-- SEM ANÚNCIOS AQUI -->
         </section>
     </div>
 
-    <!-- ================= CALDOS ================= -->
+    <!-- ================= CALDOS (1 ANÚNCIO NO FINAL) ================= -->
     <div id="block-caldos" class="category-block">
         <div class="sec-banner"><img src="https://i.ibb.co/G3F4gZrG/file-0000000009e8720eb3ff8a6896333945.png" alt="Caldos"></div>
         <section class="menu-category">
@@ -698,10 +690,16 @@
                 <div class="item-row"><div class="item-info"><span class="item-name">Caldo de Cabotía com Costela</span><div class="item-desc">Acompanha torradas, queijo e cebolinha.</div></div><span class="item-price">R$ 25,90</span></div>
                 <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
             </div>
+            <!-- ANÚNCIO CALDOS (ÚNICO) -->
+            <div class="ad-space" data-ad-phone="5534991058994">
+                <div><i class="fas fa-bullhorn ad-icon"></i><span class="ad-title"> Anuncie aqui</span></div>
+                <div class="ad-description">Seu negócio em destaque para quem ama um bom caldo.</div>
+                <div class="ad-cta"><i class="fab fa-whatsapp"></i> Fale conosco →</div>
+            </div>
         </section>
     </div>
 
-    <!-- ================= DRINKS (apenas Campari Sunset) ================= -->
+    <!-- ================= DRINKS (SEM ANÚNCIOS) ================= -->
     <div id="block-drinks" class="category-block">
         <div class="sec-banner"><img src="https://i.ibb.co/zTT77xJD/1780714799201.png" alt="Drinks"></div>
         <section class="menu-category">
@@ -710,21 +708,11 @@
                 <div class="item-row"><div class="item-info"><span class="item-name">🍹 Campari Sunset</span><div class="item-desc">Campari, maracujá natural, gelo.</div></div><span class="item-price">R$ 17,90</span></div>
                 <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
             </div>
-            <!-- Anúncios duplos em Drinks -->
-            <div class="ad-space" data-ad-phone="5534991058994">
-                <div><i class="fas fa-glass-cheers ad-icon"></i><span class="ad-title"> Público fiel</span></div>
-                <div class="ad-description">Anuncie para quem aprecia uma boa refeição. Últimas vagas!</div>
-                <div class="ad-cta"><i class="fab fa-whatsapp"></i> Garanta seu espaço →</div>
-            </div>
-            <div class="ad-space" data-ad-phone="5534991058994">
-                <div><i class="fas fa-chart-line ad-icon"></i><span class="ad-title"> Seu negócio aqui!</span></div>
-                <div class="ad-description">Atinge clientes que buscam drinks diferenciados. Vagas limitadas.</div>
-                <div class="ad-cta"><i class="fab fa-whatsapp"></i> Quero anunciar →</div>
-            </div>
+            <!-- SEM ANÚNCIOS AQUI -->
         </section>
     </div>
 
-    <!-- ================= BATIDAS ================= -->
+    <!-- ================= BATIDAS (1 ANÚNCIO NO FINAL) ================= -->
     <div id="block-batidas" class="category-block">
         <div class="sec-banner"><img src="https://i.ibb.co/gqf0c06/1780715562608.png" alt="Batidas"></div>
         <section class="menu-category">
@@ -768,10 +756,16 @@
                 <div class="item-row"><div class="item-info"><span class="item-name">🍹 Maracujada (Vodka)</span><div class="item-desc">Maracujá, leite condensado, gelo, vodka.</div></div><span class="item-price">R$ 20,90</span></div>
                 <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
             </div>
+            <!-- ANÚNCIO BATIDAS (ÚNICO) -->
+            <div class="ad-space" data-ad-phone="5534991058994">
+                <div><i class="fas fa-blender-phone ad-icon"></i><span class="ad-title"> Seu espaço aqui</span></div>
+                <div class="ad-description">Destaque sua marca para os amantes de batidas.</div>
+                <div class="ad-cta"><i class="fab fa-whatsapp"></i> Reserve já →</div>
+            </div>
         </section>
     </div>
 
-    <!-- ================= ESPETO OVINO ================= -->
+    <!-- ================= ESPETO OVINO (SEM ANÚNCIOS) ================= -->
     <div id="block-esp-ovino" class="category-block">
         <div class="sec-banner"><img src="https://i.ibb.co/kVFK9LSt/Screenshot-20260606-211156-Fotos.png" alt="Espeto Ovino"></div>
         <section class="menu-category">
@@ -788,21 +782,11 @@
                 <div class="item-row"><div class="item-info"><span class="item-name">🐑 Cordeiro (Pernil)</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 36,00</span></div>
                 <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
             </div>
-            <!-- Anúncios duplos em Espeto Ovino -->
-            <div class="ad-space" data-ad-phone="5534991058994">
-                <div><i class="fas fa-bullhorn ad-icon"></i><span class="ad-title"> Destaque sua marca</span></div>
-                <div class="ad-description">Anuncie para quem busca qualidade. Não perca essa oportunidade!</div>
-                <div class="ad-cta"><i class="fab fa-whatsapp"></i> Reserve já →</div>
-            </div>
-            <div class="ad-space" data-ad-phone="5534991058994">
-                <div><i class="fas fa-chart-line ad-icon"></i><span class="ad-title"> Seu negócio aqui!</span></div>
-                <div class="ad-description">Atinge clientes que buscam carnes nobres. Vagas limitadas.</div>
-                <div class="ad-cta"><i class="fab fa-whatsapp"></i> Quero anunciar →</div>
-            </div>
+            <!-- SEM ANÚNCIOS AQUI -->
         </section>
     </div>
 
-    <!-- ================= ESPETOS BOVINOS ================= -->
+    <!-- ================= ESPETOS BOVINOS (1 ANÚNCIO NO FINAL) ================= -->
     <div id="block-bovinos" class="category-block">
         <div class="sec-banner"><img src="https://i.ibb.co/chdGgxGf/Screenshot-20260606-211210-Fotos.png" alt="Espetos Bovinos"></div>
         <section class="menu-category">
@@ -918,10 +902,16 @@
                 <div class="item-row"><div class="item-info"><span class="item-name">🥩 Picanha</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 53,00</span></div>
                 <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
             </div>
+            <!-- ANÚNCIO BOVINOS (ÚNICO) -->
+            <div class="ad-space" data-ad-phone="5534991058994">
+                <div><i class="fas fa-bullhorn ad-icon"></i><span class="ad-title"> Anuncie aqui</span></div>
+                <div class="ad-description">Seu negócio em destaque para os apreciadores de carne bovina.</div>
+                <div class="ad-cta"><i class="fab fa-whatsapp"></i> Fale conosco →</div>
+            </div>
         </section>
     </div>
 
-    <!-- ================= ESPETOS SUÍNOS ================= -->
+    <!-- ================= ESPETOS SUÍNOS (SEM ANÚNCIOS) ================= -->
     <div id="block-suinos" class="category-block">
         <div class="sec-banner"><img src="https://i.ibb.co/xqmsBb2G/Screenshot-20260606-211604-Fotos.png" alt="Espetos Suínos"></div>
         <section class="menu-category">
@@ -967,21 +957,11 @@
                 <div class="item-row"><div class="item-info"><span class="item-name">🥩 Picanha suína</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 35,00</span></div>
                 <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
             </div>
-            <!-- Anúncios duplos em Espetos Suínos -->
-            <div class="ad-space" data-ad-phone="5534991058994">
-                <div><i class="fas fa-bullhorn ad-icon"></i><span class="ad-title"> Destaque sua marca</span></div>
-                <div class="ad-description">Anuncie para quem busca qualidade. Não perca essa oportunidade!</div>
-                <div class="ad-cta"><i class="fab fa-whatsapp"></i> Reserve já →</div>
-            </div>
-            <div class="ad-space" data-ad-phone="5534991058994">
-                <div><i class="fas fa-chart-line ad-icon"></i><span class="ad-title"> Seu negócio aqui!</span></div>
-                <div class="ad-description">Atinge clientes que buscam carnes suínas. Vagas limitadas.</div>
-                <div class="ad-cta"><i class="fab fa-whatsapp"></i> Quero anunciar →</div>
-            </div>
+            <!-- SEM ANÚNCIOS AQUI -->
         </section>
     </div>
 
-    <!-- ================= FRANGOS ================= -->
+    <!-- ================= FRANGOS (1 ANÚNCIO NO FINAL) ================= -->
     <div id="block-frangos" class="category-block">
         <div class="sec-banner"><img src="https://i.ibb.co/XrKmd21n/file-0000000002a4720ea8067e5be2187ddb.png" alt="Frangos"></div>
         <section class="menu-category">
@@ -1055,10 +1035,16 @@
                 <div class="item-row"><div class="item-info"><span class="item-name">🍗 Sobrecoxa desossada</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
                 <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
             </div>
+            <!-- ANÚNCIO FRANGOS (ÚNICO) -->
+            <div class="ad-space" data-ad-phone="5534991058994">
+                <div><i class="fas fa-drumstick-bite ad-icon"></i><span class="ad-title"> Anuncie aqui</span></div>
+                <div class="ad-description">Seu negócio em destaque para os amantes de frango.</div>
+                <div class="ad-cta"><i class="fab fa-whatsapp"></i> Fale conosco →</div>
+            </div>
         </section>
     </div>
 
-    <!-- ================= PEIXES / FRUTOS DO MAR ================= -->
+    <!-- ================= PEIXES / FRUTOS DO MAR (SEM ANÚNCIOS) ================= -->
     <div id="block-peixes" class="category-block">
         <div class="sec-banner"><img src="https://i.ibb.co/hxKycYmT/Screenshot-20260606-211643-Fotos.png" alt="Peixes e Frutos do Mar"></div>
         <section class="menu-category">
@@ -1104,10 +1090,11 @@
                 <div class="item-row"><div class="item-info"><span class="item-name">🐟 Tilápia</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 35,00</span></div>
                 <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
             </div>
+            <!-- SEM ANÚNCIOS AQUI -->
         </section>
     </div>
 
-    <!-- ================= QUEIJOS ================= -->
+    <!-- ================= QUEIJOS (1 ANÚNCIO NO FINAL) ================= -->
     <div id="block-queijos" class="category-block">
         <div class="sec-banner"><img src="https://i.ibb.co/0yMHpvbv/Screenshot-20260606-211717-Fotos.png" alt="Queijos"></div>
         <section class="menu-category">
@@ -1153,6 +1140,12 @@
                 <div class="item-row"><div class="item-info"><span class="item-name">🧀 Trança regada (azeite, orégano)</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 36,00</span></div>
                 <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
             </div>
+            <!-- ANÚNCIO QUEIJOS (ÚNICO) -->
+            <div class="ad-space" data-ad-phone="5534991058994">
+                <div><i class="fas fa-cheese ad-icon"></i><span class="ad-title"> Anuncie aqui</span></div>
+                <div class="ad-description">Seu negócio em destaque para os amantes de queijos.</div>
+                <div class="ad-cta"><i class="fab fa-whatsapp"></i> Fale conosco →</div>
+            </div>
         </section>
     </div>
 
@@ -1175,7 +1168,7 @@
 
 <a href="#" id="whatsappFloat" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
 
-<nav class="bottom-nav">
+<nav class="bottom-nav" id="bottomNav">
     <div class="nav-item" id="cartButton" style="position: relative;">
         <i class="fas fa-shopping-cart"></i><span>Pedido</span>
         <span id="cartCountBadge" class="cart-badge" style="display: none;">0</span>
@@ -1371,7 +1364,6 @@
         }
 
         function sendOrderToWhatsApp() {
-            // Validação do nome do cliente
             const customerName = document.getElementById('customerName').value.trim();
             if (customerName === "") {
                 alert("⚠️ Por favor, digite seu nome para continuar com o pedido.");
@@ -1444,7 +1436,6 @@
         function openCartModal() {
             renderCartModal();
             cartModal.classList.add('active');
-            // Limpar campos anteriores
             document.getElementById('customerName').value = '';
             document.querySelectorAll('input[name="payment"]').forEach(r => r.checked = false);
             document.querySelectorAll('input[name="delivery"]').forEach(r => r.checked = false);
@@ -1502,14 +1493,29 @@
             info: document.getElementById('block-info')
         };
         const navItems = document.querySelectorAll('.nav-item:not(#cartButton)');
+        const bottomNav = document.getElementById('bottomNav');
+
         function activateBlock(targetId) { 
             Object.values(blocks).forEach(b => b && b.classList.remove('active-block')); 
-            if (blocks[targetId]) blocks[targetId].classList.add('active-block'); 
+            if (blocks[targetId]) blocks[targetId].classList.add('active-block');
             navItems.forEach(item => { 
                 if (item.getAttribute('data-target') === targetId) item.classList.add('active'); 
                 else item.classList.remove('active'); 
-            }); 
+            });
+
+            // Rolagem suave para o topo do container
+            const container = document.querySelector('.cardapio-container');
+            if (container) {
+                container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            // Rolagem horizontal da barra de navegação para o item selecionado
+            const activeNavItem = document.querySelector(`.nav-item[data-target="${targetId}"]`);
+            if (activeNavItem && bottomNav) {
+                activeNavItem.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            }
         }
+
         navItems.forEach(item => { 
             item.addEventListener('click', (e) => { 
                 const target = item.getAttribute('data-target'); 
