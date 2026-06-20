@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
-        /* ===== ESTILOS (mantidos exatamente como antes) ===== */
+        /* ===== ESTILOS BASE (mantidos) ===== */
         * {
             margin: 0;
             padding: 0;
@@ -88,6 +88,212 @@
             background: #FFC85740;
         }
 
+        /* ===== CAMPO DE PESQUISA ===== */
+        .search-box {
+            margin: 8px 22px 4px 22px;
+            background: rgba(255,255,240,0.04);
+            border: 1px solid rgba(230, 180, 34, 0.3);
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            padding: 4px 16px;
+            backdrop-filter: blur(4px);
+            transition: 0.2s;
+        }
+        .search-box:focus-within {
+            border-color: #FFC857;
+            box-shadow: 0 0 12px rgba(255,200,87,0.15);
+        }
+        .search-box i {
+            color: #e6b42288;
+            font-size: 1.1rem;
+            margin-right: 10px;
+        }
+        .search-box input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            padding: 10px 0;
+            width: 100%;
+        }
+        .search-box input::placeholder {
+            color: #b8aa76;
+            font-weight: 300;
+            font-size: 0.85rem;
+        }
+        .search-box input:focus {
+            outline: none;
+        }
+
+        /* ===== MODAL DE PESQUISA ===== */
+        .search-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.92);
+            z-index: 1300;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.25s, opacity 0.25s;
+            padding-top: 60px;
+        }
+        .search-modal.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .search-content {
+            background: #12161c;
+            width: 92%;
+            max-width: 460px;
+            max-height: 80vh;
+            border-radius: 32px;
+            padding: 20px 18px;
+            overflow-y: auto;
+            box-shadow: 0 25px 40px rgba(0,0,0,0.6);
+            border: 1px solid rgba(230, 180, 52, 0.5);
+            scrollbar-width: thin;
+            position: relative;
+        }
+        .search-content::-webkit-scrollbar {
+            width: 4px;
+        }
+        .search-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            font-weight: bold;
+            font-size: 1.4rem;
+            color: #FFD966;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(230,180,52,0.3);
+            padding-bottom: 10px;
+        }
+        .search-header span i {
+            margin-right: 8px;
+        }
+        .close-search {
+            background: none;
+            border: none;
+            color: #FFC857;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: 0.2s;
+            padding: 0 6px;
+        }
+        .close-search:hover {
+            transform: scale(1.1);
+        }
+
+        /* ===== EXIBIÇÃO DO TERMO DIGITADO ===== */
+        .search-term-display {
+            font-size: 0.95rem;
+            color: #d9c897;
+            padding: 8px 0 12px 0;
+            border-bottom: 1px dashed rgba(230,180,52,0.2);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .search-term-display strong {
+            color: #FFC857;
+            font-weight: 700;
+            background: rgba(255,200,87,0.1);
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 1rem;
+        }
+        .search-term-display .term-label {
+            color: #b8aa76;
+            font-weight: 300;
+        }
+
+        .search-result-item {
+            background: rgba(255,255,240,0.04);
+            border-radius: 18px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(230, 180, 34, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: 0.1s;
+        }
+        .search-result-item:active {
+            transform: scale(0.99);
+        }
+        .search-result-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: #1e2229;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            border: 1px solid rgba(230,180,52,0.2);
+        }
+        .search-result-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .search-result-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #fff2df;
+        }
+        .search-result-price {
+            font-weight: 800;
+            color: #FFC857;
+            font-size: 0.9rem;
+            margin-top: 2px;
+        }
+        .search-result-add {
+            background: #FFC857;
+            border: none;
+            color: #121212;
+            font-weight: 800;
+            font-size: 0.75rem;
+            padding: 6px 14px;
+            border-radius: 40px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            transition: 0.1s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        .search-result-add:active {
+            transform: scale(0.96);
+            background: #e6b422;
+        }
+        .search-no-results {
+            text-align: center;
+            padding: 40px 20px;
+            color: #d9c897;
+            font-size: 0.9rem;
+        }
+        .search-no-results i {
+            font-size: 2.5rem;
+            color: #e6b42288;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        /* ===== ESTILOS DAS CATEGORIAS (mantidos) ===== */
         .category-block {
             display: none;
             flex-direction: column;
@@ -618,924 +824,1100 @@
             .cart-hint { display: none; }
             .order-shortcut { margin: 8px 16px; padding: 8px; font-size: 0.9rem; }
             .info-map iframe { height: 160px; }
+            .search-box { margin: 6px 14px 2px 14px; padding: 2px 12px; }
+            .search-box input { font-size: 0.85rem; padding: 8px 0; }
+            .search-content { padding: 14px; }
+            .search-result-img { width: 40px; height: 40px; font-size: 1.4rem; }
+            .search-result-name { font-size: 0.85rem; }
+            .search-result-price { font-size: 0.8rem; }
+            .search-result-add { font-size: 0.7rem; padding: 4px 10px; }
+            .search-term-display { font-size: 0.85rem; }
+            .search-term-display strong { font-size: 0.9rem; }
+        }
+
+        /* ===== SPLASH SCREEN ===== */
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0c10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+            overflow: hidden;
+        }
+        .splash-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .splash-screen img {
+            max-width: 85%;
+            max-height: 85%;
+            object-fit: contain;
+            animation: slideUp 0.8s ease forwards;
+            opacity: 0;
+        }
+        @keyframes slideUp {
+            0% {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
     </style>
 </head>
 <body>
-<div class="cardapio-container">
-    <div class="hero-logo">
-        <img class="logo-img" src="https://i.ibb.co/QFFHC0KP/file-000000005938720eabd9226925fad5d7.png" alt="Logo No Espeto">
-    </div>
-    <div class="brand-sub">ESPETARIA · BRASA · SABOR AUTÊNTICO</div>
 
-    <div class="order-shortcut" id="shortcutCart">
-        <i class="fas fa-shopping-bag"></i> 📋 MEU PEDIDO <span id="shortcutBadge" class="cart-badge" style="position: relative; top: 0; right: 0; margin-left: 8px; display: none;">0</span>
+    <!-- ===== SPLASH SCREEN ===== -->
+    <div id="splash" class="splash-screen">
+        <img src="https://i.ibb.co/9HMvkgyn/1000267446-removebg-preview-1.png" alt="No Espeto">
     </div>
 
-    <!-- ================= PRATOS EXECUTIVOS (SEM ANÚNCIOS) ================= -->
-    <div id="block-executivos" class="category-block active-block">
-        <div class="sec-banner"><img src="https://i.ibb.co/6R2FmDsz/1780714416466.png" alt="Pratos Executivos"></div>
-        <section class="menu-category">
-            <h2 class="category-title"><i class="fas fa-utensils"></i> PRATOS EXECUTIVOS <span class="active-indicator"></span></h2>
+    <div class="cardapio-container">
+        <div class="hero-logo">
+            <img class="logo-img" src="https://i.ibb.co/QFFHC0KP/file-000000005938720eabd9226925fad5d7.png" alt="Logo No Espeto">
+        </div>
+        <div class="brand-sub">ESPETARIA · BRASA · SABOR AUTÊNTICO</div>
+
+        <div class="order-shortcut" id="shortcutCart">
+            <i class="fas fa-shopping-bag"></i> 📋 MEU PEDIDO <span id="shortcutBadge" class="cart-badge" style="position: relative; top: 0; right: 0; margin-left: 8px; display: none;">0</span>
+        </div>
+
+        <!-- ===== CAMPO DE PESQUISA ===== -->
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="🔎 Buscar no cardápio..." autocomplete="off">
+        </div>
+
+        <!-- ================= PRATOS EXECUTIVOS ================= -->
+        <div id="block-executivos" class="category-block active-block">
+            <div class="sec-banner"><img src="https://i.ibb.co/6R2FmDsz/1780714416466.png" alt="Pratos Executivos"></div>
+            <section class="menu-category">
+                <h2 class="category-title"><i class="fas fa-utensils"></i> PRATOS EXECUTIVOS <span class="active-indicator"></span></h2>
+                
+                <!-- Costela Gaúcha Angus Cozida - Simples -->
+                <div class="menu-item" data-name="Costela Gaúcha Angus Cozida (Simples)" data-price="25.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🥩 Costela Gaúcha Angus Cozida</span><div class="item-desc">Simples - Somente a costela (300g)</div></div><span class="item-price">R$ 25,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <!-- Costela Gaúcha Angus Cozida - Acompanhada -->
+                <div class="menu-item" data-name="Costela Gaúcha Angus Cozida (Acompanhada)" data-price="35.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🥩 Costela Gaúcha Angus Cozida</span><div class="item-desc">Acompanhada - Costela (300g), mandioca cozida, vinagrete, farofa</div></div><span class="item-price">R$ 35,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <!-- Costela Gaúcha Angus Cozida - Completa -->
+                <div class="menu-item" data-name="Costela Gaúcha Angus Cozida (Completa)" data-price="42.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🥩 Costela Gaúcha Angus Cozida</span><div class="item-desc">Completa - Costela (300g), arroz, feijão (tropeiro/caldo), mandioca, vinagrete, farofa</div></div><span class="item-price">R$ 42,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+
+                <!-- Tilápia Empanada - Acompanhada -->
+                <div class="menu-item" data-name="Tilápia Empanada (Acompanhada)" data-price="35.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🐟 Tilápia Empanada</span><div class="item-desc">Acompanhada - Tilápia (170g), vinagrete, mandioca cozida, batata frita</div></div><span class="item-price">R$ 35,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <!-- Tilápia Empanada - Completa com Feijão Tropeiro -->
+                <div class="menu-item" data-name="Tilápia Empanada Completa (Feijão Tropeiro)" data-price="42.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🐟 Tilápia Empanada Completa</span><div class="item-desc">Tilápia (170g), arroz, feijão tropeiro, vinagrete, mandioca, batata frita</div></div><span class="item-price">R$ 42,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <!-- Tilápia Empanada - Completa com Feijão Caldo -->
+                <div class="menu-item" data-name="Tilápia Empanada Completa (Feijão Caldo)" data-price="42.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🐟 Tilápia Empanada Completa</span><div class="item-desc">Tilápia (170g), arroz, feijão de caldo, vinagrete, mandioca, batata frita</div></div><span class="item-price">R$ 42,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= CALDOS ================= -->
+        <div id="block-caldos" class="category-block">
+            <div class="sec-banner"><img src="https://i.ibb.co/G3F4gZrG/file-0000000009e8720eb3ff8a6896333945.png" alt="Caldos"></div>
+            <section class="menu-category">
+                <h2 class="category-title"><i class="fas fa-mug-hot"></i> CALDOS (500ml) <span class="active-indicator"></span></h2>
+                <div class="menu-item" data-name="Caldo de Costela" data-price="25.90">
+                    <div class="item-row"><div class="item-info"><span class="item-name">Caldo de Costela</span><div class="item-desc">Acompanha torradas, queijo e cebolinha.</div></div><span class="item-price">R$ 25,90</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Caldo de Frango" data-price="25.90">
+                    <div class="item-row"><div class="item-info"><span class="item-name">Caldo de Frango</span><div class="item-desc">Acompanha torradas, queijo e cebolinha.</div></div><span class="item-price">R$ 25,90</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Caldo de Cabotía com Costela" data-price="25.90">
+                    <div class="item-row"><div class="item-info"><span class="item-name">Caldo de Cabotía com Costela</span><div class="item-desc">Acompanha torradas, queijo e cebolinha.</div></div><span class="item-price">R$ 25,90</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="ad-space" data-ad-phone="5534991058994">
+                    <div><i class="fas fa-bullhorn ad-icon"></i><span class="ad-title"> Anuncie aqui</span></div>
+                    <div class="ad-description">Seu negócio em destaque para quem ama um bom caldo.</div>
+                    <div class="ad-cta"><i class="fab fa-whatsapp"></i> Fale conosco →</div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= DRINKS ================= -->
+        <div id="block-drinks" class="category-block">
+            <div class="sec-banner"><img src="https://i.ibb.co/4njBDVFh/Screenshot-20260619-213003-Fotos.png" alt="Drinks"></div>
+            <section class="menu-category">
+                <h2 class="category-title"><i class="fas fa-cocktail"></i> DRINKS <span class="active-indicator"></span></h2>
+                <div class="menu-item" data-name="Campari Sunset" data-price="17.90">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍹 Campari Sunset</span><div class="item-desc">Campari, maracujá natural, gelo.</div></div><span class="item-price">R$ 17,90</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= BATIDAS ================= -->
+        <div id="block-batidas" class="category-block">
+            <div class="sec-banner"><img src="https://i.ibb.co/DgYsyKCT/Screenshot-20260619-212940-Fotos.png" alt="Batidas"></div>
+            <section class="menu-category">
+                <h2 class="category-title"><i class="fas fa-blender"></i> BATIDAS <span class="active-indicator"></span></h2>
+                <!-- Paçoquita -->
+                <div class="menu-item" data-name="Paçoquita (Sem Álcool)" data-price="16.90">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🥜 Paçoquita (Sem Álcool)</span><div class="item-desc">Paçoca, leite condensado, gelo, canela.</div></div><span class="item-price">R$ 16,90</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Paçoquita (Cachaça 51)" data-price="18.90">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🥜 Paçoquita (Cachaça 51)</span><div class="item-desc">Paçoca, leite condensado, gelo, canela, cachaça.</div></div><span class="item-price">R$ 18,90</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Paçoquita (Vodka)" data-price="20.90">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🥜 Paçoquita (Vodka)</span><div class="item-desc">Paçoca, leite condensado, gelo, canela, vodka.</div></div><span class="item-price">R$ 20,90</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <!-- Suíça -->
+                <div class="menu-item" data-name="Batida Suíça (Sem Álcool)" data-price="16.90">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍋 Batida Suíça (Sem Álcool)</span><div class="item-desc">Limão, leite condensado, gelo.</div></div><span class="item-price">R$ 16,90</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Batida Suíça (Cachaça 51)" data-price="18.90">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍋 Batida Suíça (Cachaça 51)</span><div class="item-desc">Limão, leite condensado, gelo, cachaça.</div></div><span class="item-price">R$ 18,90</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Batida Suíça (Vodka)" data-price="20.90">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍋 Batida Suíça (Vodka)</span><div class="item-desc">Limão, leite condensado, gelo, vodka.</div></div><span class="item-price">R$ 20,90</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <!-- Maracujada -->
+                <div class="menu-item" data-name="Maracujada (Sem Álcool)" data-price="16.90">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍹 Maracujada (Sem Álcool)</span><div class="item-desc">Maracujá, leite condensado, gelo.</div></div><span class="item-price">R$ 16,90</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Maracujada (Cachaça 51)" data-price="18.90">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍹 Maracujada (Cachaça 51)</span><div class="item-desc">Maracujá, leite condensado, gelo, cachaça.</div></div><span class="item-price">R$ 18,90</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Maracujada (Vodka)" data-price="20.90">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍹 Maracujada (Vodka)</span><div class="item-desc">Maracujá, leite condensado, gelo, vodka.</div></div><span class="item-price">R$ 20,90</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="ad-space" data-ad-phone="5534991058994">
+                    <div><i class="fas fa-blender-phone ad-icon"></i><span class="ad-title"> Seu espaço aqui</span></div>
+                    <div class="ad-description">Destaque sua marca para os amantes de batidas.</div>
+                    <div class="ad-cta"><i class="fab fa-whatsapp"></i> Reserve já →</div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= ESPETO OVINO ================= -->
+        <div id="block-esp-ovino" class="category-block">
+            <div class="sec-banner"><img src="https://i.ibb.co/kVFK9LSt/Screenshot-20260606-211156-Fotos.png" alt="Espeto Ovino"></div>
+            <section class="menu-category">
+                <h2 class="category-title"><i class="fas fa-sheep"></i> ESPETO OVINO <span class="active-indicator"></span></h2>
+                <div class="menu-item" data-name="Cordeiro (Pernil) - Simples" data-price="19.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🐑 Cordeiro (Pernil)</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 19,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Cordeiro (Pernil) - Acompanhado" data-price="29.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🐑 Cordeiro (Pernil)</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Cordeiro (Pernil) - Completo" data-price="36.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🐑 Cordeiro (Pernil)</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 36,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= ESPETOS BOVINOS ================= -->
+        <div id="block-bovinos" class="category-block">
+            <div class="sec-banner"><img src="https://i.ibb.co/chdGgxGf/Screenshot-20260606-211210-Fotos.png" alt="Espetos Bovinos"></div>
+            <section class="menu-category">
+                <h2 class="category-title"><i class="fas fa-cow"></i> ESPETOS BOVINOS <span class="active-indicator"></span></h2>
+                <!-- Almôndega com queijo -->
+                <div class="menu-item" data-name="Almôndega com Queijo - Simples" data-price="12.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍖 Almôndega com Queijo</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Almôndega com Queijo - Acompanhado" data-price="22.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍖 Almôndega com Queijo</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Almôndega com Queijo - Completo" data-price="29.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍖 Almôndega com Queijo</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+
+                <!-- Almôndega com queijo e bacon -->
+                <div class="menu-item" data-name="Almôndega com Queijo e Bacon - Simples" data-price="12.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🥓 Almôndega com Queijo e Bacon</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Almôndega com Queijo e Bacon - Acompanhado" data-price="22.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🥓 Almôndega com Queijo e Bacon</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Almôndega com Queijo e Bacon - Completo" data-price="29.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🥓 Almôndega com Queijo e Bacon</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+
+                <!-- Contra filé -->
+                <div class="menu-item" data-name="Contra Filé - Simples" data-price="12.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🥩 Contra Filé</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Contra Filé - Acompanhado" data-price="22.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🥩 Contra Filé</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Contra Filé - Completo" data-price="29.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🥩 Contra Filé</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+
+                <!-- Costela -->
+                <div class="menu-item" data-name="Costela - Simples" data-price="12.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍖 Costela</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Costela - Acompanhado" data-price="22.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍖 Costela</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Costela - Completo" data-price="29.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍖 Costela</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+
+                <!-- Cupim -->
+                <div class="menu-item" data-name="Cupim - Simples" data-price="12.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍖 Cupim</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Cupim - Acompanhado" data-price="22.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍖 Cupim</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Cupim - Completo" data-price="29.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍖 Cupim</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+
+                <!-- Fraldinha -->
+                <div class="menu-item" data-name="Fraldinha - Simples" data-price="12.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍖 Fraldinha</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Fraldinha - Acompanhado" data-price="22.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍖 Fraldinha</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Fraldinha - Completo" data-price="29.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍖 Fraldinha</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+
+                <!-- Kafta com queijo coalho -->
+                <div class="menu-item" data-name="Kafta com Queijo Coalho - Simples" data-price="12.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍢 Kafta com Queijo Coalho</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Kafta com Queijo Coalho - Acompanhado" data-price="22.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍢 Kafta com Queijo Coalho</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Kafta com Queijo Coalho - Completo" data-price="29.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍢 Kafta com Queijo Coalho</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+
+                <!-- Picanha -->
+                <div class="menu-item" data-name="Picanha - Simples" data-price="36.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🥩 Picanha</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 36,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Picanha - Acompanhado" data-price="46.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🥩 Picanha</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 46,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Picanha - Completo" data-price="53.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🥩 Picanha</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 53,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="ad-space" data-ad-phone="5534991058994">
+                    <div><i class="fas fa-bullhorn ad-icon"></i><span class="ad-title"> Anuncie aqui</span></div>
+                    <div class="ad-description">Seu negócio em destaque para os apreciadores de carne bovina.</div>
+                    <div class="ad-cta"><i class="fab fa-whatsapp"></i> Fale conosco →</div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= ESPETOS SUÍNOS ================= -->
+        <div id="block-suinos" class="category-block">
+            <div class="sec-banner"><img src="https://i.ibb.co/xqmsBb2G/Screenshot-20260606-211604-Fotos.png" alt="Espetos Suínos"></div>
+            <section class="menu-category">
+                <h2 class="category-title"><i class="fas fa-piggy-bank"></i> ESPETOS SUÍNOS <span class="active-indicator"></span></h2>
+                <!-- Linguiça sem pimenta -->
+                <div class="menu-item" data-name="Linguiça sem pimenta - Simples" data-price="12.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🌭 Linguiça sem pimenta</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Linguiça sem pimenta - Acompanhado" data-price="22.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🌭 Linguiça sem pimenta</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Linguiça sem pimenta - Completo" data-price="29.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🌭 Linguiça sem pimenta</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+
+                <!-- Pernil -->
+                <div class="menu-item" data-name="Pernil - Simples" data-price="12.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍖 Pernil</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Pernil - Acompanhado" data-price="22.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍖 Pernil</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Pernil - Completo" data-price="29.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍖 Pernil</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+
+                <!-- Picanha suína -->
+                <div class="menu-item" data-name="Picanha suína - Simples" data-price="18.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🥩 Picanha suína</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 18,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Picanha suína - Acompanhado" data-price="28.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🥩 Picanha suína</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 28,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Picanha suína - Completo" data-price="35.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🥩 Picanha suína</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 35,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= FRANGOS ================= -->
+        <div id="block-frangos" class="category-block">
+            <div class="sec-banner"><img src="https://i.ibb.co/XrKmd21n/file-0000000002a4720ea8067e5be2187ddb.png" alt="Frangos"></div>
+            <section class="menu-category">
+                <h2 class="category-title"><i class="fas fa-drumstick-bite"></i> FRANGOS <span class="active-indicator"></span></h2>
+                <!-- Coração -->
+                <div class="menu-item" data-name="Coração - Simples" data-price="12.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">❤️ Coração</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Coração - Acompanhado" data-price="22.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">❤️ Coração</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Coração - Completo" data-price="29.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">❤️ Coração</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+
+                <!-- Filé de frango -->
+                <div class="menu-item" data-name="Filé de frango - Simples" data-price="12.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍗 Filé de frango</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Filé de frango - Acompanhado" data-price="22.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍗 Filé de frango</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Filé de frango - Completo" data-price="29.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍗 Filé de frango</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+
+                <!-- Franbacon -->
+                <div class="menu-item" data-name="Franbacon - Simples" data-price="12.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🥓 Franbacon</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Franbacon - Acompanhado" data-price="22.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🥓 Franbacon</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Franbacon - Completo" data-price="29.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🥓 Franbacon</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+
+                <!-- Tulipa -->
+                <div class="menu-item" data-name="Tulipa - Simples" data-price="12.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍗 Tulipa</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Tulipa - Acompanhado" data-price="22.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍗 Tulipa</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Tulipa - Completo" data-price="29.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍗 Tulipa</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+
+                <!-- Sobrecoxa desossada -->
+                <div class="menu-item" data-name="Sobrecoxa desossada - Simples" data-price="12.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍗 Sobrecoxa desossada</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Sobrecoxa desossada - Acompanhado" data-price="22.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍗 Sobrecoxa desossada</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Sobrecoxa desossada - Completo" data-price="29.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🍗 Sobrecoxa desossada</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="ad-space" data-ad-phone="5534991058994">
+                    <div><i class="fas fa-drumstick-bite ad-icon"></i><span class="ad-title"> Anuncie aqui</span></div>
+                    <div class="ad-description">Seu negócio em destaque para os amantes de frango.</div>
+                    <div class="ad-cta"><i class="fab fa-whatsapp"></i> Fale conosco →</div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PEIXES / FRUTOS DO MAR ================= -->
+        <div id="block-peixes" class="category-block">
+            <div class="sec-banner"><img src="https://i.ibb.co/hxKycYmT/Screenshot-20260606-211643-Fotos.png" alt="Peixes e Frutos do Mar"></div>
+            <section class="menu-category">
+                <h2 class="category-title"><i class="fas fa-fish"></i> PEIXES & FRUTOS DO MAR <span class="active-indicator"></span></h2>
+                <!-- Camarão -->
+                <div class="menu-item" data-name="Camarão - Simples" data-price="17.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🦐 Camarão</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 17,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Camarão - Acompanhado" data-price="27.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🦐 Camarão</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 27,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Camarão - Completo" data-price="34.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🦐 Camarão</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 34,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+
+                <!-- Pintado -->
+                <div class="menu-item" data-name="Pintado - Simples" data-price="17.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🐟 Pintado</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 17,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Pintado - Acompanhado" data-price="27.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🐟 Pintado</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 27,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Pintado - Completo" data-price="34.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🐟 Pintado</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 34,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+
+                <!-- Tilápia -->
+                <div class="menu-item" data-name="Tilápia (peixe) - Simples" data-price="18.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🐟 Tilápia</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 18,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Tilápia (peixe) - Acompanhado" data-price="28.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🐟 Tilápia</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 28,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Tilápia (peixe) - Completo" data-price="35.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🐟 Tilápia</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 35,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= QUEIJOS ================= -->
+        <div id="block-queijos" class="category-block">
+            <div class="sec-banner"><img src="https://i.ibb.co/0yMHpvbv/Screenshot-20260606-211717-Fotos.png" alt="Queijos"></div>
+            <section class="menu-category">
+                <h2 class="category-title"><i class="fas fa-cheese"></i> QUEIJOS <span class="active-indicator"></span></h2>
+                <!-- Coalho -->
+                <div class="menu-item" data-name="Queijo Coalho - Simples" data-price="12.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🧀 Queijo Coalho</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Queijo Coalho - Acompanhado" data-price="22.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🧀 Queijo Coalho</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Queijo Coalho - Completo" data-price="29.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🧀 Queijo Coalho</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+
+                <!-- Provolone -->
+                <div class="menu-item" data-name="Provolone - Simples" data-price="12.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🧀 Provolone</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Provolone - Acompanhado" data-price="22.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🧀 Provolone</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Provolone - Completo" data-price="29.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🧀 Provolone</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+
+                <!-- Trança regada com azeite e orégano -->
+                <div class="menu-item" data-name="Trança regada - Simples" data-price="19.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🧀 Trança regada (azeite, orégano)</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 19,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Trança regada - Acompanhado" data-price="29.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🧀 Trança regada (azeite, orégano)</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="menu-item" data-name="Trança regada - Completo" data-price="36.00">
+                    <div class="item-row"><div class="item-info"><span class="item-name">🧀 Trança regada (azeite, orégano)</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 36,00</span></div>
+                    <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+                <div class="ad-space" data-ad-phone="5534991058994">
+                    <div><i class="fas fa-cheese ad-icon"></i><span class="ad-title"> Anuncie aqui</span></div>
+                    <div class="ad-description">Seu negócio em destaque para os amantes de queijos.</div>
+                    <div class="ad-cta"><i class="fab fa-whatsapp"></i> Fale conosco →</div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= INFO ================= -->
+        <div id="block-info" class="category-block">
+            <div class="info-footer">
+                <div class="address"><i class="fas fa-map-marker-alt"></i> Avenida Doutor Laerte Vieira Gonçalves 425 - Bairro Santa Mônica - Uberlândia MG</div>
+                <div class="hours"><i class="far fa-calendar-alt"></i> Horário de funcionamento:<br><span>Domingo:</span> Fechado<br><span>Segunda a Sábado:</span> 18:00 às 23:30</div>
+                <div style="margin-top: 12px;"><i class="fas fa-motorcycle"></i> Taxa de entrega consultada por região</div>
+                <div style="margin-top: 6px;"><i class="fab fa-instagram"></i> @noespeto.espetaria</div>
+            </div>
+            <div class="info-extra-img">
+                <img src="https://i.ibb.co/BKHcH3jx/Screenshot-20260606-010940-Fotos.png" alt="Imagem do estabelecimento No Espeto">
+            </div>
+            <div class="info-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3773.4288878167996!2d-48.2879078!3d-18.9390391!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94a445b1ac6f4d0b%3A0x5c7e0a6e5a1f3a8d!2sAv.%20Dr.%20Laerte%20Vieira%20Gon%C3%A7alves%2C%20425%20-%20Santa%20M%C3%B4nica%2C%20Uberl%C3%A2ndia%20-%20MG%2C%2038405-084!5e0!3m2!1spt-BR!2sbr!4v1717680000000!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL DE PESQUISA ===== -->
+    <div id="searchModal" class="search-modal">
+        <div class="search-content">
+            <div class="search-header">
+                <span><i class="fas fa-search"></i> Resultados da Busca</span>
+                <button class="close-search" id="closeSearchModal">&times;</button>
+            </div>
+
+            <!-- ===== EXIBIÇÃO DO TERMO DIGITADO ===== -->
+            <div id="searchTermDisplay" class="search-term-display">
+                <span class="term-label">🔎 Buscando por:</span>
+                <strong id="searchTermText"></strong>
+            </div>
+
+            <div id="searchResultsList"></div>
+        </div>
+    </div>
+
+    <a href="#" id="whatsappFloat" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+
+    <nav class="bottom-nav" id="bottomNav">
+        <div class="nav-item" id="cartButton" style="position: relative;">
+            <i class="fas fa-shopping-cart"></i><span>Pedido</span>
+            <span id="cartCountBadge" class="cart-badge" style="display: none;">0</span>
+            <span class="cart-hint">📌 Clique para ver seu pedido</span>
+        </div>
+        <div class="nav-item" data-target="executivos"><i class="fas fa-utensils"></i><span>Executivos</span></div>
+        <div class="nav-item" data-target="caldos"><i class="fas fa-mug-hot"></i><span>Caldos</span></div>
+        <div class="nav-item" data-target="drinks"><i class="fas fa-cocktail"></i><span>Drinks</span></div>
+        <div class="nav-item" data-target="batidas"><i class="fas fa-blender"></i><span>Batidas</span></div>
+        <div class="nav-item" data-target="esp-ovino"><i class="fas fa-sheep"></i><span>Ovino</span></div>
+        <div class="nav-item" data-target="bovinos"><i class="fas fa-cow"></i><span>Bovinos</span></div>
+        <div class="nav-item" data-target="suinos"><i class="fas fa-piggy-bank"></i><span>Suínos</span></div>
+        <div class="nav-item" data-target="frangos"><i class="fas fa-drumstick-bite"></i><span>Frangos</span></div>
+        <div class="nav-item" data-target="peixes"><i class="fas fa-fish"></i><span>Peixes</span></div>
+        <div class="nav-item" data-target="queijos"><i class="fas fa-cheese"></i><span>Queijos</span></div>
+        <div class="nav-item" data-target="info"><i class="fas fa-info-circle"></i><span>Info</span></div>
+    </nav>
+
+    <!-- MODAL CARRINHO -->
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header"><span><i class="fas fa-shopping-bag"></i> Meu Pedido</span><button class="close-modal" id="closeCartModal">&times;</button></div>
+            <div id="cartItemsList"></div>
             
-            <!-- Costela Gaúcha Angus Cozida - Simples -->
-            <div class="menu-item" data-name="Costela Gaúcha Angus Cozida (Simples)" data-price="25.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🥩 Costela Gaúcha Angus Cozida</span><div class="item-desc">Simples - Somente a costela (300g)</div></div><span class="item-price">R$ 25,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <!-- Costela Gaúcha Angus Cozida - Acompanhada -->
-            <div class="menu-item" data-name="Costela Gaúcha Angus Cozida (Acompanhada)" data-price="35.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🥩 Costela Gaúcha Angus Cozida</span><div class="item-desc">Acompanhada - Costela (300g), mandioca cozida, vinagrete, farofa</div></div><span class="item-price">R$ 35,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <!-- Costela Gaúcha Angus Cozida - Completa -->
-            <div class="menu-item" data-name="Costela Gaúcha Angus Cozida (Completa)" data-price="42.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🥩 Costela Gaúcha Angus Cozida</span><div class="item-desc">Completa - Costela (300g), arroz, feijão (tropeiro/caldo), mandioca, vinagrete, farofa</div></div><span class="item-price">R$ 42,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
+            <!-- Campo Nome do Cliente - Obrigatório -->
+            <div style="margin: 20px 0 10px 0;">
+                <label style="font-weight: 600; color: #FFE0A3;">Seu nome *</label>
+                <input type="text" id="customerName" placeholder="Digite seu nome completo" style="width: 100%; margin-top: 6px;">
+                <span class="required-field">⚠️ Obrigatório para identificação do pedido</span>
             </div>
 
-            <!-- Tilápia Empanada - Acompanhada -->
-            <div class="menu-item" data-name="Tilápia Empanada (Acompanhada)" data-price="35.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🐟 Tilápia Empanada</span><div class="item-desc">Acompanhada - Tilápia (170g), vinagrete, mandioca cozida, batata frita</div></div><span class="item-price">R$ 35,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <!-- Tilápia Empanada - Completa com Feijão Tropeiro -->
-            <div class="menu-item" data-name="Tilápia Empanada Completa (Feijão Tropeiro)" data-price="42.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🐟 Tilápia Empanada Completa</span><div class="item-desc">Tilápia (170g), arroz, feijão tropeiro, vinagrete, mandioca, batata frita</div></div><span class="item-price">R$ 42,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <!-- Tilápia Empanada - Completa com Feijão Caldo -->
-            <div class="menu-item" data-name="Tilápia Empanada Completa (Feijão Caldo)" data-price="42.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🐟 Tilápia Empanada Completa</span><div class="item-desc">Tilápia (170g), arroz, feijão de caldo, vinagrete, mandioca, batata frita</div></div><span class="item-price">R$ 42,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <!-- SEM ANÚNCIOS AQUI -->
-        </section>
-    </div>
-
-    <!-- ================= CALDOS (1 ANÚNCIO NO FINAL) ================= -->
-    <div id="block-caldos" class="category-block">
-        <div class="sec-banner"><img src="https://i.ibb.co/G3F4gZrG/file-0000000009e8720eb3ff8a6896333945.png" alt="Caldos"></div>
-        <section class="menu-category">
-            <h2 class="category-title"><i class="fas fa-mug-hot"></i> CALDOS (500ml) <span class="active-indicator"></span></h2>
-            <div class="menu-item" data-name="Caldo de Costela" data-price="25.90">
-                <div class="item-row"><div class="item-info"><span class="item-name">Caldo de Costela</span><div class="item-desc">Acompanha torradas, queijo e cebolinha.</div></div><span class="item-price">R$ 25,90</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Caldo de Frango" data-price="25.90">
-                <div class="item-row"><div class="item-info"><span class="item-name">Caldo de Frango</span><div class="item-desc">Acompanha torradas, queijo e cebolinha.</div></div><span class="item-price">R$ 25,90</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Caldo de Cabotía com Costela" data-price="25.90">
-                <div class="item-row"><div class="item-info"><span class="item-name">Caldo de Cabotía com Costela</span><div class="item-desc">Acompanha torradas, queijo e cebolinha.</div></div><span class="item-price">R$ 25,90</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <!-- ANÚNCIO CALDOS (ÚNICO) -->
-            <div class="ad-space" data-ad-phone="5534991058994">
-                <div><i class="fas fa-bullhorn ad-icon"></i><span class="ad-title"> Anuncie aqui</span></div>
-                <div class="ad-description">Seu negócio em destaque para quem ama um bom caldo.</div>
-                <div class="ad-cta"><i class="fab fa-whatsapp"></i> Fale conosco →</div>
-            </div>
-        </section>
-    </div>
-
-    <!-- ================= DRINKS (SEM ANÚNCIOS) ================= -->
-    <div id="block-drinks" class="category-block">
-        <div class="sec-banner"><img src="https://i.ibb.co/zTT77xJD/1780714799201.png" alt="Drinks"></div>
-        <section class="menu-category">
-            <h2 class="category-title"><i class="fas fa-cocktail"></i> DRINKS <span class="active-indicator"></span></h2>
-            <div class="menu-item" data-name="Campari Sunset" data-price="17.90">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍹 Campari Sunset</span><div class="item-desc">Campari, maracujá natural, gelo.</div></div><span class="item-price">R$ 17,90</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <!-- SEM ANÚNCIOS AQUI -->
-        </section>
-    </div>
-
-    <!-- ================= BATIDAS (1 ANÚNCIO NO FINAL) ================= -->
-    <div id="block-batidas" class="category-block">
-        <div class="sec-banner"><img src="https://i.ibb.co/gqf0c06/1780715562608.png" alt="Batidas"></div>
-        <section class="menu-category">
-            <h2 class="category-title"><i class="fas fa-blender"></i> BATIDAS <span class="active-indicator"></span></h2>
-            <!-- Paçoquita -->
-            <div class="menu-item" data-name="Paçoquita (Sem Álcool)" data-price="16.90">
-                <div class="item-row"><div class="item-info"><span class="item-name">🥜 Paçoquita (Sem Álcool)</span><div class="item-desc">Paçoca, leite condensado, gelo, canela.</div></div><span class="item-price">R$ 16,90</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Paçoquita (Cachaça 51)" data-price="18.90">
-                <div class="item-row"><div class="item-info"><span class="item-name">🥜 Paçoquita (Cachaça 51)</span><div class="item-desc">Paçoca, leite condensado, gelo, canela, cachaça.</div></div><span class="item-price">R$ 18,90</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Paçoquita (Vodka)" data-price="20.90">
-                <div class="item-row"><div class="item-info"><span class="item-name">🥜 Paçoquita (Vodka)</span><div class="item-desc">Paçoca, leite condensado, gelo, canela, vodka.</div></div><span class="item-price">R$ 20,90</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <!-- Suíça -->
-            <div class="menu-item" data-name="Batida Suíça (Sem Álcool)" data-price="16.90">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍋 Batida Suíça (Sem Álcool)</span><div class="item-desc">Limão, leite condensado, gelo.</div></div><span class="item-price">R$ 16,90</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Batida Suíça (Cachaça 51)" data-price="18.90">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍋 Batida Suíça (Cachaça 51)</span><div class="item-desc">Limão, leite condensado, gelo, cachaça.</div></div><span class="item-price">R$ 18,90</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Batida Suíça (Vodka)" data-price="20.90">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍋 Batida Suíça (Vodka)</span><div class="item-desc">Limão, leite condensado, gelo, vodka.</div></div><span class="item-price">R$ 20,90</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <!-- Maracujada -->
-            <div class="menu-item" data-name="Maracujada (Sem Álcool)" data-price="16.90">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍹 Maracujada (Sem Álcool)</span><div class="item-desc">Maracujá, leite condensado, gelo.</div></div><span class="item-price">R$ 16,90</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Maracujada (Cachaça 51)" data-price="18.90">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍹 Maracujada (Cachaça 51)</span><div class="item-desc">Maracujá, leite condensado, gelo, cachaça.</div></div><span class="item-price">R$ 18,90</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Maracujada (Vodka)" data-price="20.90">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍹 Maracujada (Vodka)</span><div class="item-desc">Maracujá, leite condensado, gelo, vodka.</div></div><span class="item-price">R$ 20,90</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <!-- ANÚNCIO BATIDAS (ÚNICO) -->
-            <div class="ad-space" data-ad-phone="5534991058994">
-                <div><i class="fas fa-blender-phone ad-icon"></i><span class="ad-title"> Seu espaço aqui</span></div>
-                <div class="ad-description">Destaque sua marca para os amantes de batidas.</div>
-                <div class="ad-cta"><i class="fab fa-whatsapp"></i> Reserve já →</div>
-            </div>
-        </section>
-    </div>
-
-    <!-- ================= ESPETO OVINO (SEM ANÚNCIOS) ================= -->
-    <div id="block-esp-ovino" class="category-block">
-        <div class="sec-banner"><img src="https://i.ibb.co/kVFK9LSt/Screenshot-20260606-211156-Fotos.png" alt="Espeto Ovino"></div>
-        <section class="menu-category">
-            <h2 class="category-title"><i class="fas fa-sheep"></i> ESPETO OVINO <span class="active-indicator"></span></h2>
-            <div class="menu-item" data-name="Cordeiro (Pernil) - Simples" data-price="19.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🐑 Cordeiro (Pernil)</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 19,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Cordeiro (Pernil) - Acompanhado" data-price="29.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🐑 Cordeiro (Pernil)</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Cordeiro (Pernil) - Completo" data-price="36.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🐑 Cordeiro (Pernil)</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 36,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <!-- SEM ANÚNCIOS AQUI -->
-        </section>
-    </div>
-
-    <!-- ================= ESPETOS BOVINOS (1 ANÚNCIO NO FINAL) ================= -->
-    <div id="block-bovinos" class="category-block">
-        <div class="sec-banner"><img src="https://i.ibb.co/chdGgxGf/Screenshot-20260606-211210-Fotos.png" alt="Espetos Bovinos"></div>
-        <section class="menu-category">
-            <h2 class="category-title"><i class="fas fa-cow"></i> ESPETOS BOVINOS <span class="active-indicator"></span></h2>
-            <!-- Almôndega com queijo -->
-            <div class="menu-item" data-name="Almôndega com Queijo - Simples" data-price="12.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍖 Almôndega com Queijo</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Almôndega com Queijo - Acompanhado" data-price="22.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍖 Almôndega com Queijo</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Almôndega com Queijo - Completo" data-price="29.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍖 Almôndega com Queijo</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-
-            <!-- Almôndega com queijo e bacon -->
-            <div class="menu-item" data-name="Almôndega com Queijo e Bacon - Simples" data-price="12.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🥓 Almôndega com Queijo e Bacon</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Almôndega com Queijo e Bacon - Acompanhado" data-price="22.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🥓 Almôndega com Queijo e Bacon</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Almôndega com Queijo e Bacon - Completo" data-price="29.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🥓 Almôndega com Queijo e Bacon</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-
-            <!-- Contra filé -->
-            <div class="menu-item" data-name="Contra Filé - Simples" data-price="12.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🥩 Contra Filé</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Contra Filé - Acompanhado" data-price="22.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🥩 Contra Filé</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Contra Filé - Completo" data-price="29.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🥩 Contra Filé</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-
-            <!-- Costela -->
-            <div class="menu-item" data-name="Costela - Simples" data-price="12.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍖 Costela</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Costela - Acompanhado" data-price="22.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍖 Costela</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Costela - Completo" data-price="29.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍖 Costela</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-
-            <!-- Cupim -->
-            <div class="menu-item" data-name="Cupim - Simples" data-price="12.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍖 Cupim</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Cupim - Acompanhado" data-price="22.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍖 Cupim</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Cupim - Completo" data-price="29.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍖 Cupim</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-
-            <!-- Fraldinha -->
-            <div class="menu-item" data-name="Fraldinha - Simples" data-price="12.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍖 Fraldinha</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Fraldinha - Acompanhado" data-price="22.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍖 Fraldinha</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Fraldinha - Completo" data-price="29.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍖 Fraldinha</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-
-            <!-- Kafta com queijo coalho -->
-            <div class="menu-item" data-name="Kafta com Queijo Coalho - Simples" data-price="12.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍢 Kafta com Queijo Coalho</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Kafta com Queijo Coalho - Acompanhado" data-price="22.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍢 Kafta com Queijo Coalho</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Kafta com Queijo Coalho - Completo" data-price="29.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍢 Kafta com Queijo Coalho</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-
-            <!-- Picanha -->
-            <div class="menu-item" data-name="Picanha - Simples" data-price="36.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🥩 Picanha</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 36,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Picanha - Acompanhado" data-price="46.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🥩 Picanha</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 46,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Picanha - Completo" data-price="53.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🥩 Picanha</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 53,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <!-- ANÚNCIO BOVINOS (ÚNICO) -->
-            <div class="ad-space" data-ad-phone="5534991058994">
-                <div><i class="fas fa-bullhorn ad-icon"></i><span class="ad-title"> Anuncie aqui</span></div>
-                <div class="ad-description">Seu negócio em destaque para os apreciadores de carne bovina.</div>
-                <div class="ad-cta"><i class="fab fa-whatsapp"></i> Fale conosco →</div>
-            </div>
-        </section>
-    </div>
-
-    <!-- ================= ESPETOS SUÍNOS (SEM ANÚNCIOS) ================= -->
-    <div id="block-suinos" class="category-block">
-        <div class="sec-banner"><img src="https://i.ibb.co/xqmsBb2G/Screenshot-20260606-211604-Fotos.png" alt="Espetos Suínos"></div>
-        <section class="menu-category">
-            <h2 class="category-title"><i class="fas fa-piggy-bank"></i> ESPETOS SUÍNOS <span class="active-indicator"></span></h2>
-            <!-- Linguiça sem pimenta -->
-            <div class="menu-item" data-name="Linguiça sem pimenta - Simples" data-price="12.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🌭 Linguiça sem pimenta</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Linguiça sem pimenta - Acompanhado" data-price="22.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🌭 Linguiça sem pimenta</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Linguiça sem pimenta - Completo" data-price="29.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🌭 Linguiça sem pimenta</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-
-            <!-- Pernil -->
-            <div class="menu-item" data-name="Pernil - Simples" data-price="12.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍖 Pernil</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Pernil - Acompanhado" data-price="22.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍖 Pernil</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Pernil - Completo" data-price="29.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍖 Pernil</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-
-            <!-- Picanha suína -->
-            <div class="menu-item" data-name="Picanha suína - Simples" data-price="18.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🥩 Picanha suína</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 18,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Picanha suína - Acompanhado" data-price="28.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🥩 Picanha suína</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 28,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Picanha suína - Completo" data-price="35.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🥩 Picanha suína</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 35,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <!-- SEM ANÚNCIOS AQUI -->
-        </section>
-    </div>
-
-    <!-- ================= FRANGOS (1 ANÚNCIO NO FINAL) ================= -->
-    <div id="block-frangos" class="category-block">
-        <div class="sec-banner"><img src="https://i.ibb.co/XrKmd21n/file-0000000002a4720ea8067e5be2187ddb.png" alt="Frangos"></div>
-        <section class="menu-category">
-            <h2 class="category-title"><i class="fas fa-drumstick-bite"></i> FRANGOS <span class="active-indicator"></span></h2>
-            <!-- Coração -->
-            <div class="menu-item" data-name="Coração - Simples" data-price="12.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">❤️ Coração</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Coração - Acompanhado" data-price="22.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">❤️ Coração</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Coração - Completo" data-price="29.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">❤️ Coração</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-
-            <!-- Filé de frango -->
-            <div class="menu-item" data-name="Filé de frango - Simples" data-price="12.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍗 Filé de frango</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Filé de frango - Acompanhado" data-price="22.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍗 Filé de frango</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Filé de frango - Completo" data-price="29.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍗 Filé de frango</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-
-            <!-- Franbacon -->
-            <div class="menu-item" data-name="Franbacon - Simples" data-price="12.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🥓 Franbacon</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Franbacon - Acompanhado" data-price="22.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🥓 Franbacon</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Franbacon - Completo" data-price="29.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🥓 Franbacon</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-
-            <!-- Tulipa -->
-            <div class="menu-item" data-name="Tulipa - Simples" data-price="12.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍗 Tulipa</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Tulipa - Acompanhado" data-price="22.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍗 Tulipa</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Tulipa - Completo" data-price="29.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍗 Tulipa</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-
-            <!-- Sobrecoxa desossada -->
-            <div class="menu-item" data-name="Sobrecoxa desossada - Simples" data-price="12.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍗 Sobrecoxa desossada</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Sobrecoxa desossada - Acompanhado" data-price="22.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍗 Sobrecoxa desossada</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Sobrecoxa desossada - Completo" data-price="29.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🍗 Sobrecoxa desossada</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <!-- ANÚNCIO FRANGOS (ÚNICO) -->
-            <div class="ad-space" data-ad-phone="5534991058994">
-                <div><i class="fas fa-drumstick-bite ad-icon"></i><span class="ad-title"> Anuncie aqui</span></div>
-                <div class="ad-description">Seu negócio em destaque para os amantes de frango.</div>
-                <div class="ad-cta"><i class="fab fa-whatsapp"></i> Fale conosco →</div>
-            </div>
-        </section>
-    </div>
-
-    <!-- ================= PEIXES / FRUTOS DO MAR (SEM ANÚNCIOS) ================= -->
-    <div id="block-peixes" class="category-block">
-        <div class="sec-banner"><img src="https://i.ibb.co/hxKycYmT/Screenshot-20260606-211643-Fotos.png" alt="Peixes e Frutos do Mar"></div>
-        <section class="menu-category">
-            <h2 class="category-title"><i class="fas fa-fish"></i> PEIXES & FRUTOS DO MAR <span class="active-indicator"></span></h2>
-            <!-- Camarão -->
-            <div class="menu-item" data-name="Camarão - Simples" data-price="17.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🦐 Camarão</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 17,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Camarão - Acompanhado" data-price="27.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🦐 Camarão</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 27,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Camarão - Completo" data-price="34.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🦐 Camarão</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 34,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-
-            <!-- Pintado -->
-            <div class="menu-item" data-name="Pintado - Simples" data-price="17.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🐟 Pintado</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 17,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Pintado - Acompanhado" data-price="27.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🐟 Pintado</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 27,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Pintado - Completo" data-price="34.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🐟 Pintado</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 34,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-
-            <!-- Tilápia -->
-            <div class="menu-item" data-name="Tilápia (peixe) - Simples" data-price="18.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🐟 Tilápia</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 18,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Tilápia (peixe) - Acompanhado" data-price="28.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🐟 Tilápia</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 28,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Tilápia (peixe) - Completo" data-price="35.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🐟 Tilápia</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 35,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <!-- SEM ANÚNCIOS AQUI -->
-        </section>
-    </div>
-
-    <!-- ================= QUEIJOS (1 ANÚNCIO NO FINAL) ================= -->
-    <div id="block-queijos" class="category-block">
-        <div class="sec-banner"><img src="https://i.ibb.co/0yMHpvbv/Screenshot-20260606-211717-Fotos.png" alt="Queijos"></div>
-        <section class="menu-category">
-            <h2 class="category-title"><i class="fas fa-cheese"></i> QUEIJOS <span class="active-indicator"></span></h2>
-            <!-- Coalho -->
-            <div class="menu-item" data-name="Queijo Coalho - Simples" data-price="12.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🧀 Queijo Coalho</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Queijo Coalho - Acompanhado" data-price="22.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🧀 Queijo Coalho</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Queijo Coalho - Completo" data-price="29.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🧀 Queijo Coalho</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-
-            <!-- Provolone -->
-            <div class="menu-item" data-name="Provolone - Simples" data-price="12.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🧀 Provolone</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 12,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Provolone - Acompanhado" data-price="22.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🧀 Provolone</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 22,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Provolone - Completo" data-price="29.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🧀 Provolone</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-
-            <!-- Trança regada com azeite e orégano -->
-            <div class="menu-item" data-name="Trança regada - Simples" data-price="19.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🧀 Trança regada (azeite, orégano)</span><div class="item-desc">Simples: somente o espeto. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 19,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Trança regada - Acompanhado" data-price="29.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🧀 Trança regada (azeite, orégano)</span><div class="item-desc">Acompanhado: espeto, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 29,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <div class="menu-item" data-name="Trança regada - Completo" data-price="36.00">
-                <div class="item-row"><div class="item-info"><span class="item-name">🧀 Trança regada (azeite, orégano)</span><div class="item-desc">Completo: espeto, arroz branco, feijão tropeiro ou caldo, mandioca cozida, vinagrete, molho de alho e farofa. Acompanha geleia de abacaxi com pimenta.</div></div><span class="item-price">R$ 36,00</span></div>
-                <button class="btn-add"><i class="fas fa-cart-plus"></i> Adicionar</button>
-            </div>
-            <!-- ANÚNCIO QUEIJOS (ÚNICO) -->
-            <div class="ad-space" data-ad-phone="5534991058994">
-                <div><i class="fas fa-cheese ad-icon"></i><span class="ad-title"> Anuncie aqui</span></div>
-                <div class="ad-description">Seu negócio em destaque para os amantes de queijos.</div>
-                <div class="ad-cta"><i class="fab fa-whatsapp"></i> Fale conosco →</div>
-            </div>
-        </section>
-    </div>
-
-    <!-- ================= INFO ================= -->
-    <div id="block-info" class="category-block">
-        <div class="info-footer">
-            <div class="address"><i class="fas fa-map-marker-alt"></i> Avenida Doutor Laerte Vieira Gonçalves 425 - Bairro Santa Mônica - Uberlândia MG</div>
-            <div class="hours"><i class="far fa-calendar-alt"></i> Horário de funcionamento:<br><span>Domingo:</span> Fechado<br><span>Segunda a Sábado:</span> 18:00 às 23:30</div>
-            <div style="margin-top: 12px;"><i class="fas fa-motorcycle"></i> Taxa de entrega consultada por região</div>
-            <div style="margin-top: 6px;"><i class="fab fa-instagram"></i> @noespeto.espetaria</div>
-        </div>
-        <div class="info-extra-img">
-            <img src="https://i.ibb.co/BKHcH3jx/Screenshot-20260606-010940-Fotos.png" alt="Imagem do estabelecimento No Espeto">
-        </div>
-        <div class="info-map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3773.4288878167996!2d-48.2879078!3d-18.9390391!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94a445b1ac6f4d0b%3A0x5c7e0a6e5a1f3a8d!2sAv.%20Dr.%20Laerte%20Vieira%20Gon%C3%A7alves%2C%20425%20-%20Santa%20M%C3%B4nica%2C%20Uberl%C3%A2ndia%20-%20MG%2C%2038405-084!5e0!3m2!1spt-BR!2sbr!4v1717680000000!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="payment-methods"><strong>💳 Forma de Pagamento</strong>
+                <label><input type="radio" name="payment" value="Pix"> Pix</label>
+                <label><input type="radio" name="payment" value="Cartão de Crédito"> Cartão de Crédito</label>
+                <label><input type="radio" name="payment" value="Dinheiro"> Dinheiro</label>
+                <div id="changeField" style="display: none;"><label>Troco para quanto? <input type="number" id="changeAmount" placeholder="Valor em reais"></label></div>
+            </div>
+            <div class="delivery-methods"><strong>🚚 Entrega</strong>
+                <label><input type="radio" name="delivery" value="Retirada no balcão"> Retirada no balcão</label>
+                <label><input type="radio" name="delivery" value="Delivery"> Delivery</label>
+                <div id="addressField" style="display: none;"><label>Endereço de entrega * <input type="text" id="deliveryAddress" placeholder="Rua, número, bairro, complemento"></label></div>
+            </div>
+            <div id="cartTotal" class="cart-total">Total: R$ 0,00</div>
+            <div class="info-whatsapp"><i class="fab fa-whatsapp"></i> Seu pedido será enviado diretamente para o WhatsApp da nossa equipe.</div>
+            <button id="sendOrderBtn" class="send-order-btn"><i class="fab fa-whatsapp"></i> Enviar Pedido para WhatsApp</button>
+            <div id="backToMenuBtn" class="back-to-menu"><i class="fas fa-arrow-left"></i> Voltar ao Cardápio</div>
         </div>
     </div>
-</div>
 
-<a href="#" id="whatsappFloat" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+    <script>
+        (function() {
+            // ===== SPLASH SCREEN =====
+            const splash = document.getElementById('splash');
+            setTimeout(() => {
+                splash.classList.add('hidden');
+            }, 3500);
 
-<nav class="bottom-nav" id="bottomNav">
-    <div class="nav-item" id="cartButton" style="position: relative;">
-        <i class="fas fa-shopping-cart"></i><span>Pedido</span>
-        <span id="cartCountBadge" class="cart-badge" style="display: none;">0</span>
-        <span class="cart-hint">📌 Clique para ver seu pedido</span>
-    </div>
-    <div class="nav-item" data-target="executivos"><i class="fas fa-utensils"></i><span>Executivos</span></div>
-    <div class="nav-item" data-target="caldos"><i class="fas fa-mug-hot"></i><span>Caldos</span></div>
-    <div class="nav-item" data-target="drinks"><i class="fas fa-cocktail"></i><span>Drinks</span></div>
-    <div class="nav-item" data-target="batidas"><i class="fas fa-blender"></i><span>Batidas</span></div>
-    <div class="nav-item" data-target="esp-ovino"><i class="fas fa-sheep"></i><span>Ovino</span></div>
-    <div class="nav-item" data-target="bovinos"><i class="fas fa-cow"></i><span>Bovinos</span></div>
-    <div class="nav-item" data-target="suinos"><i class="fas fa-piggy-bank"></i><span>Suínos</span></div>
-    <div class="nav-item" data-target="frangos"><i class="fas fa-drumstick-bite"></i><span>Frangos</span></div>
-    <div class="nav-item" data-target="peixes"><i class="fas fa-fish"></i><span>Peixes</span></div>
-    <div class="nav-item" data-target="queijos"><i class="fas fa-cheese"></i><span>Queijos</span></div>
-    <div class="nav-item" data-target="info"><i class="fas fa-info-circle"></i><span>Info</span></div>
-</nav>
+            // ===== ELEMENTOS DA PESQUISA =====
+            const searchInput = document.getElementById('searchInput');
+            const searchModal = document.getElementById('searchModal');
+            const closeSearchBtn = document.getElementById('closeSearchModal');
+            const searchResultsList = document.getElementById('searchResultsList');
+            const searchTermText = document.getElementById('searchTermText');
+            const allItems = document.querySelectorAll('.menu-item');
 
-<!-- MODAL CARRINHO -->
-<div id="cartModal" class="cart-modal">
-    <div class="cart-content">
-        <div class="cart-header"><span><i class="fas fa-shopping-bag"></i> Meu Pedido</span><button class="close-modal" id="closeCartModal">&times;</button></div>
-        <div id="cartItemsList"></div>
-        
-        <!-- Campo Nome do Cliente - Obrigatório -->
-        <div style="margin: 20px 0 10px 0;">
-            <label style="font-weight: 600; color: #FFE0A3;">Seu nome *</label>
-            <input type="text" id="customerName" placeholder="Digite seu nome completo" style="width: 100%; margin-top: 6px;">
-            <span class="required-field">⚠️ Obrigatório para identificação do pedido</span>
-        </div>
-
-        <div class="payment-methods"><strong>💳 Forma de Pagamento</strong>
-            <label><input type="radio" name="payment" value="Pix"> Pix</label>
-            <label><input type="radio" name="payment" value="Cartão de Crédito"> Cartão de Crédito</label>
-            <label><input type="radio" name="payment" value="Dinheiro"> Dinheiro</label>
-            <div id="changeField" style="display: none;"><label>Troco para quanto? <input type="number" id="changeAmount" placeholder="Valor em reais"></label></div>
-        </div>
-        <div class="delivery-methods"><strong>🚚 Entrega</strong>
-            <label><input type="radio" name="delivery" value="Retirada no balcão"> Retirada no balcão</label>
-            <label><input type="radio" name="delivery" value="Delivery"> Delivery</label>
-            <div id="addressField" style="display: none;"><label>Endereço de entrega * <input type="text" id="deliveryAddress" placeholder="Rua, número, bairro, complemento"></label></div>
-        </div>
-        <div id="cartTotal" class="cart-total">Total: R$ 0,00</div>
-        <div class="info-whatsapp"><i class="fab fa-whatsapp"></i> Seu pedido será enviado diretamente para o WhatsApp da nossa equipe.</div>
-        <button id="sendOrderBtn" class="send-order-btn"><i class="fab fa-whatsapp"></i> Enviar Pedido para WhatsApp</button>
-        <div id="backToMenuBtn" class="back-to-menu"><i class="fas fa-arrow-left"></i> Voltar ao Cardápio</div>
-    </div>
-</div>
-
-<script>
-    (function() {
-        function isRestaurantOpen() {
-            const now = new Date();
-            if (now.getDay() === 0) return false;
-            const current = now.getHours() * 60 + now.getMinutes();
-            return current >= 18*60 && current <= 23*60+30;
-        }
-        function getClosedMessage() {
-            if (new Date().getDay() === 0) {
-                return "🕒 Estamos fechados aos domingos. Nosso horário é de segunda a sábado, das 18h às 23h30. Volte durante o funcionamento para fazer seu pedido!";
-            } else {
-                return "🕒 No momento estamos fora do horário de funcionamento. Atendemos de segunda a sábado, das 18h às 23h30. Aguardamos você em outro horário!";
-            }
-        }
-
-        let cart = [];
-        let nextId = 1;
-
-        const cartButton = document.getElementById('cartButton');
-        const shortcutCart = document.getElementById('shortcutCart');
-        const cartModal = document.getElementById('cartModal');
-        const closeModalBtn = document.getElementById('closeCartModal');
-        const backToMenuBtn = document.getElementById('backToMenuBtn');
-        const cartItemsList = document.getElementById('cartItemsList');
-        const cartTotalSpan = document.getElementById('cartTotal');
-        const sendOrderBtn = document.getElementById('sendOrderBtn');
-        const cartCountBadge = document.getElementById('cartCountBadge');
-        const shortcutBadge = document.getElementById('shortcutBadge');
-
-        function updateCartBadge() {
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            if (totalItems > 0) {
-                cartCountBadge.style.display = 'flex';
-                cartCountBadge.innerText = totalItems;
-                if (shortcutBadge) {
-                    shortcutBadge.style.display = 'inline-flex';
-                    shortcutBadge.innerText = totalItems;
-                }
-            } else {
-                cartCountBadge.style.display = 'none';
-                if (shortcutBadge) shortcutBadge.style.display = 'none';
-            }
-        }
-
-        function saveCart() {
-            localStorage.setItem('noespeto_cart', JSON.stringify(cart));
-            updateCartBadge();
-        }
-
-        function loadCart() {
-            const saved = localStorage.getItem('noespeto_cart');
-            if (saved) {
-                try {
-                    cart = JSON.parse(saved);
-                    if (!Array.isArray(cart)) cart = [];
-                    nextId = cart.length ? Math.max(...cart.map(i=>i.id),0)+1 : 1;
-                    updateCartBadge();
-                } catch(e) { cart = []; }
-            }
-        }
-
-        function renderCartModal() {
-            if (!cartItemsList) return;
-            if (cart.length === 0) {
-                cartItemsList.innerHTML = '<div style="text-align:center; padding:30px 20px;">🛒 Seu carrinho está vazio<br>Adicione delícias do cardápio!</div>';
-                cartTotalSpan.innerText = 'Total: R$ 0,00';
-                return;
-            }
-            let html = '';
-            let total = 0;
-            cart.forEach(item => {
-                const subtotal = item.price * item.quantity;
-                total += subtotal;
-                html += `
-                    <div class="cart-item" data-id="${item.id}">
-                        <div class="cart-item-row">
-                            <span class="cart-item-name">${item.name}</span>
-                            <span class="cart-item-price">R$ ${item.price.toFixed(2)}</span>
-                        </div>
-                        <div class="cart-item-actions">
-                            <button class="qty-minus" data-id="${item.id}">-</button>
-                            <span style="min-width: 30px; text-align:center;">${item.quantity}</span>
-                            <button class="qty-plus" data-id="${item.id}">+</button>
-                            <button class="delete-btn" data-id="${item.id}"><i class="fas fa-trash-alt"></i> Remover</button>
-                        </div>
-                        <div style="font-size:0.7rem; color:#d9c897; margin-top: 6px;">Subtotal: R$ ${subtotal.toFixed(2)}</div>
-                    </div>
-                `;
-            });
-            cartItemsList.innerHTML = html;
-            cartTotalSpan.innerText = `Total: R$ ${total.toFixed(2)}`;
-
-            document.querySelectorAll('.qty-minus').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const id = parseInt(btn.dataset.id);
-                    const idx = cart.findIndex(i => i.id === id);
-                    if (idx !== -1) {
-                        if (cart[idx].quantity > 1) cart[idx].quantity--;
-                        else cart.splice(idx,1);
-                        saveCart();
-                        renderCartModal();
-                    }
-                });
-            });
-            document.querySelectorAll('.qty-plus').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const id = parseInt(btn.dataset.id);
-                    const idx = cart.findIndex(i => i.id === id);
-                    if (idx !== -1) {
-                        cart[idx].quantity++;
-                        saveCart();
-                        renderCartModal();
-                    }
-                });
-            });
-            document.querySelectorAll('.delete-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const id = parseInt(btn.dataset.id);
-                    cart = cart.filter(i => i.id !== id);
-                    saveCart();
-                    renderCartModal();
-                });
-            });
-        }
-
-        function addToCart(name, price) {
-            if (!isRestaurantOpen()) {
-                alert(getClosedMessage());
-                return;
-            }
-            const existing = cart.find(i => i.name === name);
-            if (existing) {
-                existing.quantity++;
-            } else {
-                cart.push({ id: nextId++, name: name, price: parseFloat(price), quantity: 1 });
-            }
-            saveCart();
-            const toast = document.createElement('div');
-            toast.className = 'toast-message';
-            toast.innerText = `✅ ${name} adicionado!`;
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 2000);
-        }
-
-        function sendOrderToWhatsApp() {
-            const customerName = document.getElementById('customerName').value.trim();
-            if (customerName === "") {
-                alert("⚠️ Por favor, digite seu nome para continuar com o pedido.");
-                document.getElementById('customerName').focus();
-                return;
+            // ===== FUNÇÃO PARA EXTRAIR EMOJI DO NOME =====
+            function getEmojiFromName(name) {
+                const match = name.match(/^([\u{1F000}-\u{1FFFF}]|[\u2600-\u27BF]|[\u{2700}-\u{27BF}]|[🍖🥩🐟🍗🧀🥓🍹🥜🍋🦐🐑🐄🌭❤️🍢])/u);
+                return match ? match[0] : '🍽️';
             }
 
-            if (cart.length === 0) {
-                alert("Seu carrinho está vazio. Adicione itens antes de finalizar.");
-                return;
-            }
-            const paymentRadio = document.querySelector('input[name="payment"]:checked');
-            if (!paymentRadio) { alert("Selecione a forma de pagamento."); return; }
-            const payment = paymentRadio.value;
-            if (payment === "Dinheiro") {
-                const changeInput = document.getElementById('changeAmount');
-                if (!changeInput.value || parseFloat(changeInput.value) <= 0) {
-                    alert("Para pagamento em dinheiro, informe o valor para o troco.");
+            // ===== FUNÇÃO PARA RENDERIZAR RESULTADOS =====
+            function renderSearchResults(term) {
+                const trimmed = term.trim().toLowerCase();
+                // Atualiza o termo exibido
+                searchTermText.textContent = trimmed || '...';
+
+                if (trimmed === '') {
+                    searchModal.classList.remove('active');
                     return;
                 }
-            }
-            const deliveryRadio = document.querySelector('input[name="delivery"]:checked');
-            if (!deliveryRadio) { alert("Escolha a forma de entrega."); return; }
-            const deliveryMethod = deliveryRadio.value;
-            if (deliveryMethod === "Delivery") {
-                const address = document.getElementById('deliveryAddress').value.trim();
-                if (!address) { alert("Informe o endereço de entrega."); return; }
-            }
 
-            let msg = "*🍢 NO ESPETO - PEDIDO 🍢*\n\n";
-            msg += `*👤 Cliente:* ${customerName}\n\n`;
-            let total = 0;
-            cart.forEach(item => {
-                const subtotal = item.price * item.quantity;
-                total += subtotal;
-                msg += `➡️ *${item.quantity}x ${item.name}* - R$ ${subtotal.toFixed(2)}\n`;
-            });
-            msg += `\n*💰 TOTAL: R$ ${total.toFixed(2)}*\n`;
-            msg += `\n*💳 Pagamento:* ${payment}`;
-            if (payment === "Dinheiro") {
-                const change = parseFloat(document.getElementById('changeAmount').value).toFixed(2);
-                msg += ` (Troco para R$ ${change})`;
-            }
-            msg += `\n*🚚 Entrega:* ${deliveryMethod}`;
-            if (deliveryMethod === "Delivery") {
-                msg += `\n*📍 Endereço:* ${document.getElementById('deliveryAddress').value.trim()}`;
-            }
-            msg += `\n\n❤️ Agradecemos pela preferência!\n*No Espeto - Espetaria & Restaurante* 🥩🔥`;
+                // Filtrar itens
+                const results = [];
+                allItems.forEach(item => {
+                    const name = item.getAttribute('data-name')?.toLowerCase() || '';
+                    const desc = item.querySelector('.item-desc')?.textContent?.toLowerCase() || '';
+                    if (name.includes(trimmed) || desc.includes(trimmed)) {
+                        const price = parseFloat(item.getAttribute('data-price')) || 0;
+                        const fullName = item.getAttribute('data-name') || '';
+                        results.push({ name: fullName, price, element: item });
+                    }
+                });
 
-            const phoneNumber = "5534996528570";
-            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)}`;
-            window.open(url, '_blank');
-        }
-
-        document.querySelectorAll('.btn-add').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const menuItem = btn.closest('.menu-item');
-                const name = menuItem.getAttribute('data-name');
-                let price = menuItem.getAttribute('data-price');
-                if (!price) {
-                    const priceSpan = menuItem.querySelector('.item-price');
-                    if (priceSpan) price = priceSpan.innerText.replace('R$', '').replace(',','.').trim();
+                // Construir HTML
+                let html = '';
+                if (results.length === 0) {
+                    html = `
+                        <div class="search-no-results">
+                            <i class="fas fa-search"></i>
+                            <span>Ops! Não encontramos nenhum item com "<strong>${trimmed}</strong>".<br>Que tal tentar outra palavra?</span>
+                        </div>
+                    `;
+                } else {
+                    results.forEach(r => {
+                        const emoji = getEmojiFromName(r.name);
+                        const priceFormatted = r.price.toFixed(2).replace('.', ',');
+                        html += `
+                            <div class="search-result-item" data-name="${r.name}" data-price="${r.price}">
+                                <div class="search-result-img">${emoji}</div>
+                                <div class="search-result-info">
+                                    <div class="search-result-name">${r.name}</div>
+                                    <div class="search-result-price">R$ ${priceFormatted}</div>
+                                </div>
+                                <button class="search-result-add" data-name="${r.name}" data-price="${r.price}">
+                                    <i class="fas fa-plus"></i> Adicionar
+                                </button>
+                            </div>
+                        `;
+                    });
                 }
-                price = parseFloat(price);
-                if (name && !isNaN(price)) addToCart(name, price);
-            });
-        });
+                searchResultsList.innerHTML = html;
 
-        function openCartModal() {
-            renderCartModal();
-            cartModal.classList.add('active');
-            document.getElementById('customerName').value = '';
-            document.querySelectorAll('input[name="payment"]').forEach(r => r.checked = false);
-            document.querySelectorAll('input[name="delivery"]').forEach(r => r.checked = false);
-            document.getElementById('changeField').style.display = 'none';
-            document.getElementById('addressField').style.display = 'none';
-        }
-        cartButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            openCartModal();
-        });
-        if (shortcutCart) {
-            shortcutCart.addEventListener('click', (e) => {
+                // Adicionar eventos aos botões "Adicionar" dos resultados
+                document.querySelectorAll('.search-result-add').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const name = this.getAttribute('data-name');
+                        const price = parseFloat(this.getAttribute('data-price'));
+                        addToCart(name, price);
+                    });
+                });
+
+                // Abrir modal
+                searchModal.classList.add('active');
+            }
+
+            // ===== EVENTO DE DIGITAÇÃO =====
+            searchInput.addEventListener('input', function() {
+                renderSearchResults(this.value);
+            });
+
+            // ===== FECHAR MODAL =====
+            function closeSearchModal() {
+                searchModal.classList.remove('active');
+            }
+
+            closeSearchBtn.addEventListener('click', closeSearchModal);
+            searchModal.addEventListener('click', function(e) {
+                if (e.target === this) closeSearchModal();
+            });
+
+            // ===== RESTANTE DO CÓDIGO ORIGINAL (carrinho, navegação, etc.) =====
+            function isRestaurantOpen() {
+                const now = new Date();
+                if (now.getDay() === 0) return false;
+                const current = now.getHours() * 60 + now.getMinutes();
+                return current >= 18*60 && current <= 23*60+30;
+            }
+            function getClosedMessage() {
+                if (new Date().getDay() === 0) {
+                    return "🕒 Estamos fechados aos domingos. Nosso horário é de segunda a sábado, das 18h às 23h30. Volte durante o funcionamento para fazer seu pedido!";
+                } else {
+                    return "🕒 No momento estamos fora do horário de funcionamento. Atendemos de segunda a sábado, das 18h às 23h30. Aguardamos você em outro horário!";
+                }
+            }
+
+            let cart = [];
+            let nextId = 1;
+
+            const cartButton = document.getElementById('cartButton');
+            const shortcutCart = document.getElementById('shortcutCart');
+            const cartModal = document.getElementById('cartModal');
+            const closeModalBtn = document.getElementById('closeCartModal');
+            const backToMenuBtn = document.getElementById('backToMenuBtn');
+            const cartItemsList = document.getElementById('cartItemsList');
+            const cartTotalSpan = document.getElementById('cartTotal');
+            const sendOrderBtn = document.getElementById('sendOrderBtn');
+            const cartCountBadge = document.getElementById('cartCountBadge');
+            const shortcutBadge = document.getElementById('shortcutBadge');
+            const container = document.querySelector('.cardapio-container');
+
+            function updateCartBadge() {
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                if (totalItems > 0) {
+                    cartCountBadge.style.display = 'flex';
+                    cartCountBadge.innerText = totalItems;
+                    if (shortcutBadge) {
+                        shortcutBadge.style.display = 'inline-flex';
+                        shortcutBadge.innerText = totalItems;
+                    }
+                } else {
+                    cartCountBadge.style.display = 'none';
+                    if (shortcutBadge) shortcutBadge.style.display = 'none';
+                }
+            }
+
+            function saveCart() {
+                localStorage.setItem('noespeto_cart', JSON.stringify(cart));
+                updateCartBadge();
+            }
+
+            function loadCart() {
+                const saved = localStorage.getItem('noespeto_cart');
+                if (saved) {
+                    try {
+                        cart = JSON.parse(saved);
+                        if (!Array.isArray(cart)) cart = [];
+                        nextId = cart.length ? Math.max(...cart.map(i=>i.id),0)+1 : 1;
+                        updateCartBadge();
+                    } catch(e) { cart = []; }
+                }
+            }
+
+            function renderCartModal() {
+                if (!cartItemsList) return;
+                if (cart.length === 0) {
+                    cartItemsList.innerHTML = '<div style="text-align:center; padding:30px 20px;">🛒 Seu carrinho está vazio<br>Adicione delícias do cardápio!</div>';
+                    cartTotalSpan.innerText = 'Total: R$ 0,00';
+                    return;
+                }
+                let html = '';
+                let total = 0;
+                cart.forEach(item => {
+                    const subtotal = item.price * item.quantity;
+                    total += subtotal;
+                    html += `
+                        <div class="cart-item" data-id="${item.id}">
+                            <div class="cart-item-row">
+                                <span class="cart-item-name">${item.name}</span>
+                                <span class="cart-item-price">R$ ${item.price.toFixed(2)}</span>
+                            </div>
+                            <div class="cart-item-actions">
+                                <button class="qty-minus" data-id="${item.id}">-</button>
+                                <span style="min-width: 30px; text-align:center;">${item.quantity}</span>
+                                <button class="qty-plus" data-id="${item.id}">+</button>
+                                <button class="delete-btn" data-id="${item.id}"><i class="fas fa-trash-alt"></i> Remover</button>
+                            </div>
+                            <div style="font-size:0.7rem; color:#d9c897; margin-top: 6px;">Subtotal: R$ ${subtotal.toFixed(2)}</div>
+                        </div>
+                    `;
+                });
+                cartItemsList.innerHTML = html;
+                cartTotalSpan.innerText = `Total: R$ ${total.toFixed(2)}`;
+
+                document.querySelectorAll('.qty-minus').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const id = parseInt(btn.dataset.id);
+                        const idx = cart.findIndex(i => i.id === id);
+                        if (idx !== -1) {
+                            if (cart[idx].quantity > 1) cart[idx].quantity--;
+                            else cart.splice(idx,1);
+                            saveCart();
+                            renderCartModal();
+                        }
+                    });
+                });
+                document.querySelectorAll('.qty-plus').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const id = parseInt(btn.dataset.id);
+                        const idx = cart.findIndex(i => i.id === id);
+                        if (idx !== -1) {
+                            cart[idx].quantity++;
+                            saveCart();
+                            renderCartModal();
+                        }
+                    });
+                });
+                document.querySelectorAll('.delete-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const id = parseInt(btn.dataset.id);
+                        cart = cart.filter(i => i.id !== id);
+                        saveCart();
+                        renderCartModal();
+                    });
+                });
+            }
+
+            function addToCart(name, price) {
+                if (!isRestaurantOpen()) {
+                    alert(getClosedMessage());
+                    return;
+                }
+                const existing = cart.find(i => i.name === name);
+                if (existing) {
+                    existing.quantity++;
+                } else {
+                    cart.push({ id: nextId++, name: name, price: parseFloat(price), quantity: 1 });
+                }
+                saveCart();
+                const toast = document.createElement('div');
+                toast.className = 'toast-message';
+                toast.innerText = `✅ ${name} adicionado!`;
+                document.body.appendChild(toast);
+                setTimeout(() => toast.remove(), 2000);
+
+                // ===== ROLAR SUAVEMENTE PARA O TOPO (acima do logotipo) =====
+                if (container) {
+                    container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+
+            function sendOrderToWhatsApp() {
+                const customerName = document.getElementById('customerName').value.trim();
+                if (customerName === "") {
+                    alert("⚠️ Por favor, digite seu nome para continuar com o pedido.");
+                    document.getElementById('customerName').focus();
+                    return;
+                }
+
+                if (cart.length === 0) {
+                    alert("Seu carrinho está vazio. Adicione itens antes de finalizar.");
+                    return;
+                }
+                const paymentRadio = document.querySelector('input[name="payment"]:checked');
+                if (!paymentRadio) { alert("Selecione a forma de pagamento."); return; }
+                const payment = paymentRadio.value;
+                if (payment === "Dinheiro") {
+                    const changeInput = document.getElementById('changeAmount');
+                    if (!changeInput.value || parseFloat(changeInput.value) <= 0) {
+                        alert("Para pagamento em dinheiro, informe o valor para o troco.");
+                        return;
+                    }
+                }
+                const deliveryRadio = document.querySelector('input[name="delivery"]:checked');
+                if (!deliveryRadio) { alert("Escolha a forma de entrega."); return; }
+                const deliveryMethod = deliveryRadio.value;
+                if (deliveryMethod === "Delivery") {
+                    const address = document.getElementById('deliveryAddress').value.trim();
+                    if (!address) { alert("Informe o endereço de entrega."); return; }
+                }
+
+                let msg = "*🍢 NO ESPETO - PEDIDO 🍢*\n\n";
+                msg += `*👤 Cliente:* ${customerName}\n\n`;
+                let total = 0;
+                cart.forEach(item => {
+                    const subtotal = item.price * item.quantity;
+                    total += subtotal;
+                    msg += `➡️ *${item.quantity}x ${item.name}* - R$ ${subtotal.toFixed(2)}\n`;
+                });
+                msg += `\n*💰 TOTAL: R$ ${total.toFixed(2)}*\n`;
+                msg += `\n*💳 Pagamento:* ${payment}`;
+                if (payment === "Dinheiro") {
+                    const change = parseFloat(document.getElementById('changeAmount').value).toFixed(2);
+                    msg += ` (Troco para R$ ${change})`;
+                }
+                msg += `\n*🚚 Entrega:* ${deliveryMethod}`;
+                if (deliveryMethod === "Delivery") {
+                    msg += `\n*📍 Endereço:* ${document.getElementById('deliveryAddress').value.trim()}`;
+                }
+                msg += `\n\n❤️ Agradecemos pela preferência!\n*No Espeto - Espetaria & Restaurante* 🥩🔥`;
+
+                const phoneNumber = "5534996528570";
+                const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)}`;
+                window.open(url, '_blank');
+            }
+
+            // Eventos dos botões "Adicionar" da página principal
+            document.querySelectorAll('.btn-add').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const menuItem = btn.closest('.menu-item');
+                    const name = menuItem.getAttribute('data-name');
+                    let price = menuItem.getAttribute('data-price');
+                    if (!price) {
+                        const priceSpan = menuItem.querySelector('.item-price');
+                        if (priceSpan) price = priceSpan.innerText.replace('R$', '').replace(',','.').trim();
+                    }
+                    price = parseFloat(price);
+                    if (name && !isNaN(price)) addToCart(name, price);
+                });
+            });
+
+            function openCartModal() {
+                renderCartModal();
+                cartModal.classList.add('active');
+                document.getElementById('customerName').value = '';
+                document.querySelectorAll('input[name="payment"]').forEach(r => r.checked = false);
+                document.querySelectorAll('input[name="delivery"]').forEach(r => r.checked = false);
+                document.getElementById('changeField').style.display = 'none';
+                document.getElementById('addressField').style.display = 'none';
+            }
+            cartButton.addEventListener('click', (e) => {
                 e.preventDefault();
                 openCartModal();
             });
-        }
-        closeModalBtn.addEventListener('click', () => cartModal.classList.remove('active'));
-        backToMenuBtn.addEventListener('click', () => cartModal.classList.remove('active'));
-        window.addEventListener('click', (e) => { if (e.target === cartModal) cartModal.classList.remove('active'); });
+            if (shortcutCart) {
+                shortcutCart.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openCartModal();
+                });
+            }
+            closeModalBtn.addEventListener('click', () => cartModal.classList.remove('active'));
+            backToMenuBtn.addEventListener('click', () => cartModal.classList.remove('active'));
+            window.addEventListener('click', (e) => { if (e.target === cartModal) cartModal.classList.remove('active'); });
 
-        document.querySelectorAll('input[name="payment"]').forEach(radio => {
-            radio.addEventListener('change', () => {
-                const changeField = document.getElementById('changeField');
-                if (radio.value === "Dinheiro") changeField.style.display = 'block';
-                else changeField.style.display = 'none';
+            document.querySelectorAll('input[name="payment"]').forEach(radio => {
+                radio.addEventListener('change', () => {
+                    const changeField = document.getElementById('changeField');
+                    if (radio.value === "Dinheiro") changeField.style.display = 'block';
+                    else changeField.style.display = 'none';
+                });
             });
-        });
-        document.querySelectorAll('input[name="delivery"]').forEach(radio => {
-            radio.addEventListener('change', () => {
-                const addressField = document.getElementById('addressField');
-                if (radio.value === "Delivery") addressField.style.display = 'block';
-                else addressField.style.display = 'none';
+            document.querySelectorAll('input[name="delivery"]').forEach(radio => {
+                radio.addEventListener('change', () => {
+                    const addressField = document.getElementById('addressField');
+                    if (radio.value === "Delivery") addressField.style.display = 'block';
+                    else addressField.style.display = 'none';
+                });
             });
-        });
-        sendOrderBtn.addEventListener('click', sendOrderToWhatsApp);
+            sendOrderBtn.addEventListener('click', sendOrderToWhatsApp);
 
-        const whatsappBtn = document.getElementById('whatsappFloat');
-        whatsappBtn.addEventListener('click', (e) => { 
-            e.preventDefault(); 
-            if (isRestaurantOpen()) window.open(`https://wa.me/5534996528570?text=${encodeURIComponent("Olá! Gostaria de fazer um pedido.")}`,'_blank'); 
-            else alert(getClosedMessage()); 
-        });
+            const whatsappBtn = document.getElementById('whatsappFloat');
+            whatsappBtn.addEventListener('click', (e) => { 
+                e.preventDefault(); 
+                if (isRestaurantOpen()) window.open(`https://wa.me/5534996528570?text=${encodeURIComponent("Olá! Gostaria de fazer um pedido.")}`,'_blank'); 
+                else alert(getClosedMessage()); 
+            });
 
-        const blocks = {
-            executivos: document.getElementById('block-executivos'),
-            caldos: document.getElementById('block-caldos'),
-            drinks: document.getElementById('block-drinks'),
-            batidas: document.getElementById('block-batidas'),
-            'esp-ovino': document.getElementById('block-esp-ovino'),
-            bovinos: document.getElementById('block-bovinos'),
-            suinos: document.getElementById('block-suinos'),
-            frangos: document.getElementById('block-frangos'),
-            peixes: document.getElementById('block-peixes'),
-            queijos: document.getElementById('block-queijos'),
-            info: document.getElementById('block-info')
-        };
-        const navItems = document.querySelectorAll('.nav-item:not(#cartButton)');
-        const bottomNav = document.getElementById('bottomNav');
+            const blocks = {
+                executivos: document.getElementById('block-executivos'),
+                caldos: document.getElementById('block-caldos'),
+                drinks: document.getElementById('block-drinks'),
+                batidas: document.getElementById('block-batidas'),
+                'esp-ovino': document.getElementById('block-esp-ovino'),
+                bovinos: document.getElementById('block-bovinos'),
+                suinos: document.getElementById('block-suinos'),
+                frangos: document.getElementById('block-frangos'),
+                peixes: document.getElementById('block-peixes'),
+                queijos: document.getElementById('block-queijos'),
+                info: document.getElementById('block-info')
+            };
+            const navItems = document.querySelectorAll('.nav-item:not(#cartButton)');
+            const bottomNav = document.getElementById('bottomNav');
 
-        function activateBlock(targetId) { 
-            Object.values(blocks).forEach(b => b && b.classList.remove('active-block')); 
-            if (blocks[targetId]) blocks[targetId].classList.add('active-block');
+            function activateBlock(targetId) { 
+                Object.values(blocks).forEach(b => b && b.classList.remove('active-block')); 
+                if (blocks[targetId]) blocks[targetId].classList.add('active-block');
+                navItems.forEach(item => { 
+                    if (item.getAttribute('data-target') === targetId) item.classList.add('active'); 
+                    else item.classList.remove('active'); 
+                });
+
+                if (container) {
+                    container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+
+                const activeNavItem = document.querySelector(`.nav-item[data-target="${targetId}"]`);
+                if (activeNavItem && bottomNav) {
+                    activeNavItem.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                }
+            }
+
             navItems.forEach(item => { 
-                if (item.getAttribute('data-target') === targetId) item.classList.add('active'); 
-                else item.classList.remove('active'); 
+                item.addEventListener('click', (e) => { 
+                    const target = item.getAttribute('data-target'); 
+                    if (target && blocks[target]) {
+                        closeSearchModal();
+                        activateBlock(target); 
+                    }
+                }); 
+            });
+            activateBlock('executivos');
+
+            const genericAdSpaces = document.querySelectorAll('.ad-space');
+            const adPhone = "5534991058994";
+            genericAdSpaces.forEach(ad => {
+                ad.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const message = "Olá! Vi o espaço para anunciantes no cardápio digital do No Espeto e quero mais informações.";
+                    window.open(`https://wa.me/${adPhone}?text=${encodeURIComponent(message)}`, '_blank');
+                });
             });
 
-            // Rolagem suave para o topo do container
-            const container = document.querySelector('.cardapio-container');
-            if (container) {
-                container.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-
-            // Rolagem horizontal da barra de navegação para o item selecionado
-            const activeNavItem = document.querySelector(`.nav-item[data-target="${targetId}"]`);
-            if (activeNavItem && bottomNav) {
-                activeNavItem.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-            }
-        }
-
-        navItems.forEach(item => { 
-            item.addEventListener('click', (e) => { 
-                const target = item.getAttribute('data-target'); 
-                if (target && blocks[target]) activateBlock(target); 
-            }); 
-        });
-        activateBlock('executivos');
-
-        const genericAdSpaces = document.querySelectorAll('.ad-space');
-        const adPhone = "5534991058994";
-        genericAdSpaces.forEach(ad => {
-            ad.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const message = "Olá! Vi o espaço para anunciantes no cardápio digital do No Espeto e quero mais informações.";
-                window.open(`https://wa.me/${adPhone}?text=${encodeURIComponent(message)}`, '_blank');
-            });
-        });
-
-        loadCart();
-    })();
-</script>
+            loadCart();
+        })();
+    </script>
 </body>
 </html>
