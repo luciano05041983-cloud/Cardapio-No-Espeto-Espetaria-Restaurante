@@ -569,12 +569,10 @@
             opacity: 0.8;
         }
 
-        .whatsapp-float {
+        /* ===== BOTÕES FLUTUANTES ===== */
+        .float-btn {
             position: fixed;
-            bottom: 80px;
             right: 16px;
-            background-color: #25D366;
-            color: white;
             width: 56px;
             height: 56px;
             border-radius: 50%;
@@ -586,6 +584,26 @@
             z-index: 1000;
             cursor: pointer;
             text-decoration: none;
+            border: none;
+            transition: 0.2s;
+        }
+        .float-btn:active {
+            transform: scale(0.92);
+        }
+        .whatsapp-float {
+            background-color: #25D366;
+            color: white;
+            bottom: 80px;
+        }
+        .share-float {
+            background: #1e2229;
+            color: #FFC857;
+            border: 2px solid #e6b42288;
+            bottom: 142px;
+            font-size: 1.6rem;
+        }
+        .share-float i {
+            margin-left: 2px;
         }
 
         .toast-message {
@@ -611,6 +629,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* ===== MODAIS (carrinho, personalização e compartilhamento) ===== */
         .cart-modal {
             position: fixed;
             top: 0;
@@ -812,10 +831,154 @@
             margin-top: 4px;
             display: block;
         }
+
+        /* ===== MODAL DE PERSONALIZAÇÃO (melhorado) ===== */
+        .customize-options {
+            margin: 20px 0;
+        }
+        .customize-options label {
+            display: block;
+            font-weight: 600;
+            color: #FFE0A3;
+            margin-top: 16px;
+            margin-bottom: 6px;
+        }
+        .customize-options .option-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            background: rgba(0,0,0,0.2);
+            padding: 16px 20px;
+            border-radius: 28px;
+        }
+        .customize-options .option-group label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 400;
+            color: #fff;
+            margin: 0;
+            font-size: 0.95rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 20px;
+            transition: background 0.1s;
+        }
+        .customize-options .option-group label:hover {
+            background: rgba(255,200,87,0.1);
+        }
+        .customize-options .option-group input[type="radio"] {
+            width: auto;
+            margin: 0;
+            accent-color: #FFC857;
+            transform: scale(1.1);
+        }
+        .customize-item-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff2df;
+            margin-bottom: 4px;
+        }
+        .customize-item-price {
+            color: #FFC857;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+        .customize-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .customize-actions button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .customize-actions .btn-confirm {
+            background: #FFC857;
+            color: #121212;
+        }
+        .customize-actions .btn-confirm:active {
+            transform: scale(0.96);
+        }
+        .customize-actions .btn-cancel {
+            background: #2a2e36;
+            color: #fff;
+        }
+        .customize-actions .btn-cancel:active {
+            transform: scale(0.96);
+        }
+
+        /* ===== MODAL DE COMPARTILHAMENTO ===== */
+        .share-modal-content {
+            text-align: center;
+            padding: 20px 10px;
+        }
+        .share-modal-content .share-icon {
+            font-size: 4rem;
+            color: #FFC857;
+            margin-bottom: 12px;
+        }
+        .share-modal-content h3 {
+            font-size: 1.4rem;
+            color: #fff2df;
+            margin-bottom: 8px;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 1px;
+        }
+        .share-modal-content p {
+            color: #d9c897;
+            font-size: 0.95rem;
+            margin: 12px 0;
+            line-height: 1.6;
+        }
+        .share-modal-content .share-link {
+            background: rgba(255,255,240,0.06);
+            padding: 12px;
+            border-radius: 16px;
+            border: 1px dashed #e6b42288;
+            color: #FFE0A3;
+            font-size: 0.8rem;
+            word-break: break-all;
+            margin: 12px 0;
+        }
+        .share-modal-content .share-confirm {
+            color: #25D366;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin: 8px 0;
+            display: none;
+        }
+        .share-modal-content .share-confirm.show {
+            display: block;
+        }
+        .share-modal-content .btn-ok {
+            background: #FFC857;
+            color: #121212;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: 0.1s;
+        }
+        .share-modal-content .btn-ok:active {
+            transform: scale(0.96);
+        }
+
         @media (max-width: 450px) {
             .category-title { font-size: 1.5rem; }
             .nav-item { padding: 4px 8px; min-width: 58px; font-size: 0.6rem; }
-            .whatsapp-float { bottom: 80px; right: 12px; width: 50px; height: 50px; font-size: 1.8rem; }
+            .float-btn { width: 48px; height: 48px; font-size: 1.6rem; right: 12px; }
+            .whatsapp-float { bottom: 76px; }
+            .share-float { bottom: 132px; font-size: 1.4rem; }
             .active-indicator { width: 8px; height: 8px; }
             .ad-space { margin: 12px 0; padding: 10px 12px; }
             .toast-message { bottom: 80px; right: 12px; font-size: 0.7rem; max-width: 220px; }
@@ -833,6 +996,17 @@
             .search-result-add { font-size: 0.7rem; padding: 4px 10px; }
             .search-term-display { font-size: 0.85rem; }
             .search-term-display strong { font-size: 0.9rem; }
+            .customize-options .option-group {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+            .customize-options .option-group label {
+                font-size: 0.9rem;
+                padding: 6px 4px;
+            }
+            .share-modal-content h3 { font-size: 1.2rem; }
+            .share-modal-content p { font-size: 0.85rem; }
         }
 
         /* ===== SPLASH SCREEN ===== */
@@ -1439,8 +1613,72 @@
         </div>
     </div>
 
-    <a href="#" id="whatsappFloat" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+    <!-- ===== MODAL DE COMPARTILHAMENTO ===== -->
+    <div id="shareModal" class="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <span><i class="fas fa-share-alt"></i> Compartilhar</span>
+                <button class="close-modal" id="closeShareModal">&times;</button>
+            </div>
+            <div class="share-modal-content">
+                <div class="share-icon"><i class="fas fa-share-alt"></i></div>
+                <h3>🍽️ Compartilhe o cardápio digital!</h3>
+                <p>Mostre para sua família e amigos as delícias do <strong>No Espeto</strong>.<br>O link do cardápio foi copiado para a área de transferência.</p>
+                <div class="share-link" id="shareLinkDisplay">https://luciano05041983-cloud.github.io/Cardapio-No-Espeto-Espetaria-Restaurante/</div>
+                <div class="share-confirm show" id="shareConfirm">✅ Link copiado com sucesso!</div>
+                <button class="btn-ok" id="shareOkBtn">OK</button>
+            </div>
+        </div>
+    </div>
 
+    <!-- ===== MODAL DE PERSONALIZAÇÃO (para espetos) ===== -->
+    <div id="customizeModal" class="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <span><i class="fas fa-utensils"></i> Personalize seu Espeto</span>
+                <button class="close-modal" id="closeCustomizeModal">&times;</button>
+            </div>
+            <div id="customizeContent">
+                <div class="customize-item-name" id="customizeItemName"></div>
+                <div class="customize-item-price" id="customizeItemPrice"></div>
+
+                <div class="customize-options">
+                    <!-- Ponto da carne -->
+                    <label>🔥 Ponto da carne *</label>
+                    <div class="option-group" id="pontoGroup">
+                        <label><input type="radio" name="ponto" value="mal passado" checked> Mal passado</label>
+                        <label><input type="radio" name="ponto" value="ao ponto"> Ao ponto</label>
+                        <label><input type="radio" name="ponto" value="bem passado"> Bem passado</label>
+                    </div>
+
+                    <!-- Tipo de feijão (só para completos) -->
+                    <div id="feijaoGroupContainer" style="display: none;">
+                        <label>🍲 Tipo de feijão *</label>
+                        <div class="option-group" id="feijaoGroup">
+                            <label><input type="radio" name="feijao" value="tropeiro" checked> Feijão Tropeiro</label>
+                            <label><input type="radio" name="feijao" value="caldo"> Feijão Caldo</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="customize-actions">
+                    <button class="btn-cancel" id="cancelCustomize">Cancelar</button>
+                    <button class="btn-confirm" id="confirmCustomize"><i class="fas fa-cart-plus"></i> Adicionar ao carrinho</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== BOTÕES FLUTUANTES ===== -->
+    <!-- Botão de Compartilhar -->
+    <button id="shareButton" class="float-btn share-float" title="Compartilhar cardápio">
+        <i class="fas fa-share-alt"></i>
+    </button>
+
+    <!-- Botão WhatsApp -->
+    <a href="#" id="whatsappFloat" class="float-btn whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+
+    <!-- ===== NAVEGAÇÃO INFERIOR ===== -->
     <nav class="bottom-nav" id="bottomNav">
         <div class="nav-item" id="cartButton" style="position: relative;">
             <i class="fas fa-shopping-cart"></i><span>Pedido</span>
@@ -1460,7 +1698,7 @@
         <div class="nav-item" data-target="info"><i class="fas fa-info-circle"></i><span>Info</span></div>
     </nav>
 
-    <!-- MODAL CARRINHO -->
+    <!-- ===== MODAL CARRINHO ===== -->
     <div id="cartModal" class="cart-modal">
         <div class="cart-content">
             <div class="cart-header"><span><i class="fas fa-shopping-bag"></i> Meu Pedido</span><button class="close-modal" id="closeCartModal">&times;</button></div>
@@ -1509,14 +1747,13 @@
 
             // ===== FUNÇÃO PARA EXTRAIR EMOJI DO NOME =====
             function getEmojiFromName(name) {
-                const match = name.match(/^([\u{1F000}-\u{1FFFF}]|[\u2600-\u27BF]|[\u{2700}-\u{27BF}]|[🍖🥩🐟🍗🧀🥓🍹🥜🍋🦐🐑🐄🌭❤️🍢])/u);
+                const match = name.match(/^([\u{1F000}-\u{1FFFF}]|[\u2600}-\u{27BF}]|[\u{2700}-\u{27BF}]|[🍖🥩🐟🍗🧀🥓🍹🥜🍋🦐🐑🐄🌭❤️🍢])/u);
                 return match ? match[0] : '🍽️';
             }
 
             // ===== FUNÇÃO PARA RENDERIZAR RESULTADOS =====
             function renderSearchResults(term) {
                 const trimmed = term.trim().toLowerCase();
-                // Atualiza o termo exibido
                 searchTermText.textContent = trimmed || '...';
 
                 if (trimmed === '') {
@@ -1524,7 +1761,6 @@
                     return;
                 }
 
-                // Filtrar itens
                 const results = [];
                 allItems.forEach(item => {
                     const name = item.getAttribute('data-name')?.toLowerCase() || '';
@@ -1536,7 +1772,6 @@
                     }
                 });
 
-                // Construir HTML
                 let html = '';
                 if (results.length === 0) {
                     html = `
@@ -1565,17 +1800,20 @@
                 }
                 searchResultsList.innerHTML = html;
 
-                // Adicionar eventos aos botões "Adicionar" dos resultados
                 document.querySelectorAll('.search-result-add').forEach(btn => {
                     btn.addEventListener('click', function(e) {
                         e.stopPropagation();
                         const name = this.getAttribute('data-name');
                         const price = parseFloat(this.getAttribute('data-price'));
-                        addToCart(name, price);
+                        const itemElement = Array.from(allItems).find(el => el.getAttribute('data-name') === name);
+                        if (itemElement && isEspetoItem(itemElement)) {
+                            openCustomizeModal(itemElement);
+                        } else {
+                            addToCart(name, price);
+                        }
                     });
                 });
 
-                // Abrir modal
                 searchModal.classList.add('active');
             }
 
@@ -1584,14 +1822,63 @@
                 renderSearchResults(this.value);
             });
 
-            // ===== FECHAR MODAL =====
+            // ===== FECHAR MODAL DE PESQUISA =====
             function closeSearchModal() {
                 searchModal.classList.remove('active');
             }
-
             closeSearchBtn.addEventListener('click', closeSearchModal);
             searchModal.addEventListener('click', function(e) {
                 if (e.target === this) closeSearchModal();
+            });
+
+            // ===== MODAL DE COMPARTILHAMENTO =====
+            const shareModal = document.getElementById('shareModal');
+            const closeShareBtn = document.getElementById('closeShareModal');
+            const shareOkBtn = document.getElementById('shareOkBtn');
+            const shareButton = document.getElementById('shareButton');
+            const CARDAPIO_LINK = 'https://luciano05041983-cloud.github.io/Cardapio-No-Espeto-Espetaria-Restaurante/';
+
+            function openShareModal() {
+                // Copia o link
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(CARDAPIO_LINK).catch(() => {
+                        fallbackCopyShare(CARDAPIO_LINK);
+                    });
+                } else {
+                    fallbackCopyShare(CARDAPIO_LINK);
+                }
+                // Exibe o modal
+                shareModal.classList.add('active');
+            }
+
+            function fallbackCopyShare(text) {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                } catch (err) {
+                    // Se falhar, mostra a mensagem de erro no modal mesmo assim? Melhor ignorar.
+                }
+                document.body.removeChild(textarea);
+            }
+
+            function closeShareModal() {
+                shareModal.classList.remove('active');
+            }
+
+            shareButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                openShareModal();
+            });
+
+            closeShareBtn.addEventListener('click', closeShareModal);
+            shareOkBtn.addEventListener('click', closeShareModal);
+            shareModal.addEventListener('click', function(e) {
+                if (e.target === this) closeShareModal();
             });
 
             // ===== RESTANTE DO CÓDIGO ORIGINAL (carrinho, navegação, etc.) =====
@@ -1624,6 +1911,92 @@
             const shortcutBadge = document.getElementById('shortcutBadge');
             const container = document.querySelector('.cardapio-container');
 
+            // ===== MODAL DE PERSONALIZAÇÃO =====
+            const customizeModal = document.getElementById('customizeModal');
+            const closeCustomizeBtn = document.getElementById('closeCustomizeModal');
+            const cancelCustomizeBtn = document.getElementById('cancelCustomize');
+            const confirmCustomizeBtn = document.getElementById('confirmCustomize');
+            const customizeItemName = document.getElementById('customizeItemName');
+            const customizeItemPrice = document.getElementById('customizeItemPrice');
+            const feijaoGroupContainer = document.getElementById('feijaoGroupContainer');
+            let currentCustomizeItem = null;
+
+            function isEspetoItem(itemElement) {
+                const block = itemElement.closest('.category-block');
+                if (!block) return false;
+                const espetoBlocks = ['block-esp-ovino', 'block-bovinos', 'block-suinos', 'block-frangos', 'block-peixes', 'block-queijos'];
+                return espetoBlocks.includes(block.id);
+            }
+
+            function openCustomizeModal(itemElement) {
+                const name = itemElement.getAttribute('data-name');
+                let price = parseFloat(itemElement.getAttribute('data-price'));
+                if (isNaN(price)) {
+                    const priceSpan = itemElement.querySelector('.item-price');
+                    if (priceSpan) price = parseFloat(priceSpan.innerText.replace('R$', '').replace(',','.').trim());
+                }
+                currentCustomizeItem = itemElement;
+                customizeItemName.textContent = name;
+                customizeItemPrice.textContent = `R$ ${price.toFixed(2)}`;
+
+                const isCompleto = name.includes('Completo');
+                feijaoGroupContainer.style.display = isCompleto ? 'block' : 'none';
+
+                document.querySelector('#pontoGroup input[value="mal passado"]').checked = true;
+                if (isCompleto) {
+                    document.querySelector('#feijaoGroup input[value="tropeiro"]').checked = true;
+                }
+
+                customizeModal.classList.add('active');
+            }
+
+            function closeCustomizeModal() {
+                customizeModal.classList.remove('active');
+                currentCustomizeItem = null;
+            }
+
+            closeCustomizeBtn.addEventListener('click', closeCustomizeModal);
+            cancelCustomizeBtn.addEventListener('click', closeCustomizeModal);
+            customizeModal.addEventListener('click', function(e) {
+                if (e.target === this) closeCustomizeModal();
+            });
+
+            confirmCustomizeBtn.addEventListener('click', function() {
+                if (!currentCustomizeItem) return;
+
+                const ponto = document.querySelector('input[name="ponto"]:checked');
+                if (!ponto) {
+                    alert('Selecione o ponto da carne.');
+                    return;
+                }
+
+                let baseName = currentCustomizeItem.getAttribute('data-name');
+                let price = parseFloat(currentCustomizeItem.getAttribute('data-price'));
+                if (isNaN(price)) {
+                    const priceSpan = currentCustomizeItem.querySelector('.item-price');
+                    if (priceSpan) price = parseFloat(priceSpan.innerText.replace('R$', '').replace(',','.').trim());
+                }
+
+                let finalName = baseName;
+                let extra = `Ponto: ${ponto.value}`;
+
+                const isCompleto = baseName.includes('Completo');
+                if (isCompleto) {
+                    const feijao = document.querySelector('input[name="feijao"]:checked');
+                    if (!feijao) {
+                        alert('Selecione o tipo de feijão.');
+                        return;
+                    }
+                    extra += `, Feijão: ${feijao.value}`;
+                }
+
+                finalName += ` (${extra})`;
+
+                addToCart(finalName, price);
+                closeCustomizeModal();
+            });
+
+            // ===== FUNÇÕES DO CARRINHO =====
             function updateCartBadge() {
                 const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
                 if (totalItems > 0) {
@@ -1738,7 +2111,6 @@
                 document.body.appendChild(toast);
                 setTimeout(() => toast.remove(), 2000);
 
-                // ===== ROLAR SUAVEMENTE PARA O TOPO (acima do logotipo) =====
                 if (container) {
                     container.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
@@ -1799,22 +2171,29 @@
                 window.open(url, '_blank');
             }
 
-            // Eventos dos botões "Adicionar" da página principal
+            // ===== EVENTOS DOS BOTÕES "ADICIONAR" =====
             document.querySelectorAll('.btn-add').forEach(btn => {
-                btn.addEventListener('click', (e) => {
+                btn.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    const menuItem = btn.closest('.menu-item');
-                    const name = menuItem.getAttribute('data-name');
-                    let price = menuItem.getAttribute('data-price');
-                    if (!price) {
-                        const priceSpan = menuItem.querySelector('.item-price');
-                        if (priceSpan) price = priceSpan.innerText.replace('R$', '').replace(',','.').trim();
+                    const menuItem = this.closest('.menu-item');
+                    if (!menuItem) return;
+
+                    if (isEspetoItem(menuItem)) {
+                        openCustomizeModal(menuItem);
+                        return;
                     }
-                    price = parseFloat(price);
+
+                    const name = menuItem.getAttribute('data-name');
+                    let price = parseFloat(menuItem.getAttribute('data-price'));
+                    if (isNaN(price)) {
+                        const priceSpan = menuItem.querySelector('.item-price');
+                        if (priceSpan) price = parseFloat(priceSpan.innerText.replace('R$', '').replace(',','.').trim());
+                    }
                     if (name && !isNaN(price)) addToCart(name, price);
                 });
             });
 
+            // ===== ABRIR CARRINHO =====
             function openCartModal() {
                 renderCartModal();
                 cartModal.classList.add('active');
@@ -1838,6 +2217,7 @@
             backToMenuBtn.addEventListener('click', () => cartModal.classList.remove('active'));
             window.addEventListener('click', (e) => { if (e.target === cartModal) cartModal.classList.remove('active'); });
 
+            // ===== PAGAMENTO E ENTREGA =====
             document.querySelectorAll('input[name="payment"]').forEach(radio => {
                 radio.addEventListener('change', () => {
                     const changeField = document.getElementById('changeField');
@@ -1854,6 +2234,7 @@
             });
             sendOrderBtn.addEventListener('click', sendOrderToWhatsApp);
 
+            // ===== WHATSAPP FLUTUANTE =====
             const whatsappBtn = document.getElementById('whatsappFloat');
             whatsappBtn.addEventListener('click', (e) => { 
                 e.preventDefault(); 
@@ -1861,6 +2242,7 @@
                 else alert(getClosedMessage()); 
             });
 
+            // ===== NAVEGAÇÃO POR CATEGORIAS =====
             const blocks = {
                 executivos: document.getElementById('block-executivos'),
                 caldos: document.getElementById('block-caldos'),
@@ -1906,6 +2288,7 @@
             });
             activateBlock('executivos');
 
+            // ===== ANÚNCIOS =====
             const genericAdSpaces = document.querySelectorAll('.ad-space');
             const adPhone = "5534991058994";
             genericAdSpaces.forEach(ad => {
